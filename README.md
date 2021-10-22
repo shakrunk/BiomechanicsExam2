@@ -19,7 +19,7 @@ Professor | Dr. Kendall Hunter \
 Due Date | TBD, 2021 \
 
 | Command | Description |
-| --- | --- |
+| ---: | --- |
 | Assignment | BiomechanicsExam2 |
 | Class | BIOE-3020-H01: Introduction to Biomechanics |
 | Professor | Dr. Kendall Hunter |
