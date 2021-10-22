@@ -20,8 +20,10 @@ Due Date | TBD, 2021 \
 
 | Command | Description |
 | --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |
+| Assignment | BiomechanicsExam2 |
+| Class | BIOE-3020-H01: Introduction to Biomechanics |
+| Professor | Dr. Kendall Hunter |
+| Due Date | TBD, 2021 |
 
 lmao hope that worked ^^
 
