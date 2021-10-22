@@ -13,14 +13,12 @@
 
 ## Assignment Info
 
-| Command | Description |
-| ---: | --- |
+| Info | Description |
+| ---: | :--- |
 | Assignment: | BiomechanicsExam2 |
 | Class: | BIOE-3020-H01: Introduction to Biomechanics |
 | Professor: | Dr. Kendall Hunter |
 | Due Date: | TBD, 2021 |
-
-lmao hope that worked ^^
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
