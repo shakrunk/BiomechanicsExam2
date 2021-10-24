@@ -1,5 +1,23 @@
-function [out] = bardef_main (varargin) % changed function name to match title
-
+%% Numerically find integral of [P / A(x) E(x)] dx (if needed)
+% Author(s): 
+%  - Neil A. Kumar
+%  - Linea Gutierrez
+%  - Elise Carter
+%  - Dr. Kendall Hunter (provided template, assumed)
+% Dependancies:
+%  - model_input.m
+%  - int_def.m
+% -------------------------------------------------------------------------
+% All units are generalizable to both SI or U.S. customary units (use only
+% one) and are represented with "u:" followed by the unit type:
+%  - force     || Force units - N or lbs
+%  - distance  || Distance units - m or in
+%  - area      || Area units - m^2 or in^2
+%  - pressure  || Pressure or stress units - Pa (N/m^2) or psi (lbs/in^2)
+%  - na        || Unitless value
+% -------------------------------------------------------------------------
+function [out] = bardef_main (varargin)
+    %% Initialize
     disp('****COMBINED MECHANICAL/THERMAL AXIAL LOADING ANALYSIS****');
     if nargin == 0
         disp('Reading in new bar model');
@@ -9,7 +27,6 @@ function [out] = bardef_main (varargin) % changed function name to match title
         bar = varargin{1};
     end
     
-    %% DO WORK HERE
     %% Free Deformation
     % Mechanical
     UncLoad = 0;
