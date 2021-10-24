@@ -10,12 +10,12 @@
 %  - Prob2.04.mat
 %  - Prob2.05.mat 
 %  - Prob2.06.mat
-%  - bardef_main.m
+%  - mech_main.m
 
 %% Setup
 
 % Generic Reset
-cls; %alias used for ease; does following commands:
+cls; % alias used for ease; does following commands:
         % close all; % close all open windows / plots
         % clear;     % clear the workspace of any variables
         % clc;       % clear the command line
@@ -38,8 +38,8 @@ bar(3) = load('Example Models/Mixed2.05.mat').bar;  fprintf('Mixed2.05.mat loade
 bar(4) = load('Example Models/Prob2.06.mat').bar;   fprintf('Prob2.06.mat loaded into bar(4)\n'); %lgf
 
 for i = 1:4
-    out(i) = bardef_main(bar(i));
-    fprintf('bardef_main run on barmodel %i', i);
+    out(i) = mech_main(bar(i));
+    fprintf('mech_main run on barmodel %i', i);
 end
 
 %% Progam End
