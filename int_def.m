@@ -14,7 +14,6 @@
 %  - pressure  || Pressure or stress units - Pa (N/m^2) or psi (lbs/in^2)
 %  - na        || Unitless value
 % -------------------------------------------------------------------------
-% Note: Needs modulus change
 function [defTot] = int_def (P,L,A1,A2,E1,E2,step)
     % P - Applied load                                  || u:force
     % L - Height of cylinder                            || u:distance
@@ -29,6 +28,8 @@ function [defTot] = int_def (P,L,A1,A2,E1,E2,step)
     C2 = sqrr(A2/pi); % Radius (end)                    || u:distance
     deltC = C2-C1; % change in radius from near to end  || u:distance
     dC = deltC/step; % differential change in radius    || u:distance
+    deltE = E2-E1; % change in modulus from near to end || u:pressure
+    dE = deltE/step; % differential change in modulus   || u:pressure
     dL = L/step; % differential change in height        || u:distance
     
     % Loop Prep
@@ -38,9 +39,13 @@ function [defTot] = int_def (P,L,A1,A2,E1,E2,step)
         unitC1 = C1 - dC*i; 
         unitC2 = C1 - dC*(i-1);
         unitC = (unitC1 + unitC2)/2;
+        
+        unitE1 = E1 - dE*i; 
+        unitE2 = E1 - dE*(i-1);
+        unitE = (unitE1 + unitE2)/2;
 
         A = pi*unitC^2; % crossectional area of unit
-        dDef = defCylinder(P,dL,A,E); % differential change in deforamtion
+        dDef = defCylinder(P,dL,A,unitE); % differential change in deforamtion
         defTot = defTot + dDef; % update total deformation
     end
 
