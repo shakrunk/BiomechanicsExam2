@@ -16,7 +16,7 @@
 %  - pressure  || Pressure or stress units - Pa (N/m^2) or psi (lbs/in^2)
 %  - na        || Unitless value
 % -------------------------------------------------------------------------
-function [out] = bardef_main (varargin)
+function [out] = mech_main (varargin)
     %% Initialize
     disp('****COMBINED MECHANICAL/THERMAL AXIAL LOADING ANALYSIS****');
     if nargin == 0
