@@ -18,8 +18,8 @@ function [out] = bardef_main (varargin) % changed function name to match title
         out.UncLoad(i) = UncLoad;
         out.UncMDef(i) = Int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
     end
-    disp(bar.EndLoad);
-    disp(out.UncLoad);
+%     disp(bar.EndLoad); %DEBUG
+%     disp(out.UncLoad); %DEBUG
     % Thermal
 
     %% Reaction Return
@@ -43,14 +43,27 @@ end
 function [def] = int_def (P,L,A1,A2,E1,E2,step)
 % Perform integration here in subfunction. You'll need to call this a lot, so
 % don't just do it multiple times above...
+    C1 = sqrr(A1/pi); % Radius 1
+    C2 = sqrr(A2/pi); % Radius 2
+    deltC = C2-C1; % change in radius from near to end of solid
+    dC = deltC/n; % differential change in radius
+    dL = L/n; % differential change in height
+    defTot = 0; % creates variable for total deformation and sets to 0
     for i = 1:step
-        defCylinder();
+        % Midpoint Riemann Sum
+        unitC1 = C - dC*i;
+        unitC2 = C - dC*(i-1);
+        unitC = (unitC1 + unitC2)/2;
+
+        A = pi*unitC^2; % crossectional area of unit
+        dDef = defCylinder(P,dL,A,E); % differential change in deforamtion
+        defTot = defTot + dDef; % update total deformation
     end
 
 end
 
 function [def] = defCylinder(P,L,A,E)
-    def = (P*L)/(A*E); % deformation formula
+    def = (P*L)/(A*E); % axial deformation formula
 end
 
 %% Take input of bar mechanical/thermal info
