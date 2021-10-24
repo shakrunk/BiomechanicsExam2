@@ -34,6 +34,7 @@ function [out] = bardef_main (varargin)
         UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load
         out.UncLoad(i) = UncLoad;
         out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
+        
     end
 %     disp(bar.EndLoad); %DEBUG
 %     disp(out.UncLoad); %DEBUG
