@@ -18,7 +18,7 @@
 | Assignment: | BiomechanicsExam2 |
 | Class: | BIOE-3020-H01: Introduction to Biomechanics |
 | Professor: | Dr. Kendall Hunter |
-| Due Date: | 2021-11-11 23:59-0700 |
+| Due Date: | 2021-11-18 23:59-0700 |
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
