@@ -49,3 +49,23 @@ for i = 1: 1: bar.NE1em
     bar.Leng(i) = input([prompt ' length = ']);
     bar.Modu1(i) = input([prompt ' modulus near end = ']);
     bar.Modu2(i) = input([prompt ' modulus far end = ']);
+    bar.Alpha(i) = input([prompt ' alpha = ']);
+    bar.DeltT(i) = input([prompt ' Final Temperature = ']);
+    if i == 1
+        bar.EndGap = input([prompt ' end gap = ']);
+    end
+    if i > 1
+        bar.EndLoad(i) = input([prompt ' end load = ']);
+    else
+	bar.EndLoad(i) = 0;
+    end
+end
+
+yn = input('Save model to .mat file? (y/n) ','s');
+if strcmpi(yn,'y')
+    name = input('Input model name (no trailing .mat): ','s');
+    name = [name '.mat'];
+    save (name, 'bar');
+end
+
+end
