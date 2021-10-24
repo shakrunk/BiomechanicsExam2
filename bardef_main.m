@@ -41,9 +41,9 @@ end
 function [def] = int_def (P,L,A1,A2,E1,E2,step)
 % Perform integration here in subfunction. You'll need to call this a lot, so
 % don't just do it multiple times above...
-for i = 1:step
-    defCylinder();
-end
+    for i = 1:step
+        defCylinder();
+    end
 
 end
 
