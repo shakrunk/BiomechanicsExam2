@@ -14,10 +14,12 @@ function [out] = bardef_main (varargin) % changed function name to match title
     % Mechanical
     UncLoad = 0;
     for i = 1: 1: bar.NElem % loop through elements
-        UncLoad = UncLoad + bar.EndLoad; % Calculates uncontrained end load
+        UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load
         out.UncLoad(i) = UncLoad;
         out.UncMDef(i) = Int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
     end
+    disp(bar.EndLoad);
+    disp(out.UncLoad);
     % Thermal
 
     %% Reaction Return
