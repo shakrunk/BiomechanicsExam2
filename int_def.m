@@ -24,8 +24,8 @@ function [defTot] = int_def (P,L,A1,A2,E1,E2,step)
     % step - Number of integration steps                || u:na
     
     % Calculate Neccessary Variables
-    C1 = sqrr(A1/pi); % Radius (near)                   || u:distance
-    C2 = sqrr(A2/pi); % Radius (end)                    || u:distance
+    C1 = sqrt(A1/pi); % Radius (near)                   || u:distance
+    C2 = sqrt(A2/pi); % Radius (end)                    || u:distance
     deltC = C2-C1; % change in radius from near to end  || u:distance
     dC = deltC/step; % differential change in radius    || u:distance
     deltE = E2-E1; % change in modulus from near to end || u:pressure
@@ -35,11 +35,12 @@ function [defTot] = int_def (P,L,A1,A2,E1,E2,step)
     % Loop Prep
     defTot = 0; % Create variable for total deformation/set to 0
     for i = 1:step % loops through integration steps
-        % Midpoint Riemann Sum
+        % Midpoint Riemann Sum - Midpoint Radius
         unitC1 = C1 - dC*i; 
         unitC2 = C1 - dC*(i-1);
         unitC = (unitC1 + unitC2)/2;
         
+        % Midpoint Riemann Sum - Midpoint Modulus
         unitE1 = E1 - dE*i; 
         unitE2 = E1 - dE*(i-1);
         unitE = (unitE1 + unitE2)/2;
