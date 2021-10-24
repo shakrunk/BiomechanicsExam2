@@ -1,7 +1,8 @@
-function [out] = mech..main (varargin)
+function [out] = mech_main (varargin)
 
 % Function is a recreation by Neil A. Kumar of file by Dr. Kendall Hunter
 % Shown in Lecture 18 - 10/21. Use for preperatory work only.
+% [Neil guessed: "mech_main" instead of "mech..main"]
 
 disp('****COMBINED MECHANICAL/THERMAL AXIAL LOADING ANALYSIS****');
 if nargin == 0
