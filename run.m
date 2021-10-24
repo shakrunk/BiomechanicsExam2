@@ -37,7 +37,6 @@ bar(2) = load('Example Models/Prob2.05.mat').bar;   fprintf('Prob2.05.mat loaded
 bar(3) = load('Example Models/Mixed2.05.mat').bar;  fprintf('Mixed2.05.mat loaded into bar(3)\n'); %lgf
 bar(4) = load('Example Models/Prob2.06.mat').bar;   fprintf('Prob2.06.mat loaded into bar(4)\n'); %lgf
 
-out(4) = 0; % Prellocating size
 for i = 1:4
     out(i) = bardef_main(bar(i));
     fprintf('bardef_main run on barmodel %i', i);
