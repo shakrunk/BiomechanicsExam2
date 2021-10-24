@@ -1,16 +1,16 @@
 %% Exam 2 Take-Home Portion
 % BIOE-3040-H01 Introduction to Biomechanics w/ Prof. Hunter
-% Authors: 
-%   Neil A. Kumar
-%   Linea Gutierrez
-%   Elise Carter
+% Author(s): 
+%  - Neil A. Kumar
+%  - Linea Gutierrez
+%  - Elise Carter
 % Dependencies: 
-%   cls.m 
-%   Mixed2.05.mat
-%   Prob2.04.mat
-%   Prob2.05.mat 
-%   Prob2.06.mat
-%   bardef_main.m
+%  - cls.m 
+%  - Mixed2.05.mat
+%  - Prob2.04.mat
+%  - Prob2.05.mat 
+%  - Prob2.06.mat
+%  - bardef_main.m
 
 %% Setup
 
