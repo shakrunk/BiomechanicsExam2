@@ -21,10 +21,16 @@ fprintf("<strong># Authors: Neil A. Kumar, Linea Gutierrez, and Elise Carter</st
 
 % Load in example models
 fprintf('\n- Loading in example models -\n'); % Look good formatting (lgf)
-bar4 = load('Example Models/Prob2.04.mat');        fprintf('Prob2.04.mat loaded into bar4\n'); %lgf
-bar5 = load('Example Models/Prob2.05.mat');        fprintf('Prob2.05.mat loaded into bar5\n'); %lgf
-bar5mix = load('Example Models/Mixed2.05.mat');    fprintf('Mixed2.05.mat loaded into bar5mix\n'); %lgf
-bar6 = load('Example Models/Prob2.06.mat');        fprintf('Prob2.06.mat loaded into bar6\n'); %lgf
+bar(1) = load('Example Models/Prob2.04.mat');       fprintf('Prob2.04.mat loaded into bar(1)\n'); %lgf
+bar(2) = load('Example Models/Prob2.05.mat');       fprintf('Prob2.05.mat loaded into bar(2)\n'); %lgf
+bar(3) = load('Example Models/Mixed2.05.mat');      fprintf('Mixed2.05.mat loaded into bar(3)\n'); %lgf
+bar(4) = load('Example Models/Prob2.06.mat');       fprintf('Prob2.06.mat loaded into bar(4)\n'); %lgf
+
+out(4) = 0; % Prellocating size
+for i = 1:4
+    out(i) = bardef_main(bar(i));
+    fprintf('bardef_main run on barmodel %i', i);
+end
 
 %% Progam End
 
