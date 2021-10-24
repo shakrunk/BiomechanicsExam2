@@ -1,6 +1,16 @@
 %% Exam 2 Take-Home Portion
 % BIOE-3040-H01 Introduction to Biomechanics w/ Prof. Hunter
-% By Neil A. Kumar, Linea Gutierrez, and Elise Carter
+% Authors: 
+%   Neil A. Kumar
+%   Linea Gutierrez
+%   Elise Carter
+% Dependencies: 
+%   cls.m 
+%   Mixed2.05.mat
+%   Prob2.04.mat
+%   Prob2.05.mat 
+%   Prob2.06.mat
+%   bardef_main.m
 
 %% Setup
 
@@ -16,6 +26,7 @@ fprintf("<strong># ~/denkr/Documents/School/UCD/'5. BIOE.3020.H01 - BioMechanics
 fprintf("<strong># File: run.m</strong>\n");
 fprintf("<strong># Title: Exam 2 Take-Home Portion</strong>\n");
 fprintf("<strong># Authors: Neil A. Kumar, Linea Gutierrez, and Elise Carter</strong>\n");
+fprintf("<strong># Dependencies:</strong> cls.m | Mixed2.05.mat | Prob2.04.mat | Prob2.05.mat | Prob2.06.mat | bardef_main.m\n");
 
 %% Program Main
 
