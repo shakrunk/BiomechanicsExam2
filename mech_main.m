@@ -3,7 +3,7 @@
 %  - Neil A. Kumar
 %  - Linea Gutierrez
 %  - Elise Carter
-%  - Dr. Kendall Hunter (provided template, assumed)
+%  - Dr. Kendall Hunter (provided template/examples, assumed)
 % Dependancies:
 %  - model_input.m
 %  - int_def.m
@@ -19,18 +19,20 @@
 function [out] = mech_main (varargin)
     %% Initialize
     disp('****COMBINED MECHANICAL/THERMAL AXIAL LOADING ANALYSIS****');
+    func = sprintf('mech_main.m || ');
     if nargin == 0
-        disp('Reading in new bar model');
+        disp([func, 'Reading in new bar model']);
         bar = model_input;
     else
-        disp('Using bar model provided in call');
+        disp([func, 'Using bar model provided in call']);
         bar = varargin{1};
     end
     
     
     
     %% Free Deformation
-    % Mechanical
+    % Mechanical / Thermal
+    disp([func, 'Calculating Free Deformation...']);
     UncLoad = 0;
     for i = 1: 1: bar.NElem % loop through elements
         UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load
@@ -44,14 +46,13 @@ function [out] = mech_main (varargin)
         %    cumtrap()
         
     end
+    disp([func, 'Done!']);
     
 %     disp(bar.EndLoad); %DEBUG
 %     disp(out.UncLoad); %DEBUG
 
-    % Thermal
-        % Alph, Leng, DeltT
-
     %% Reaction Return
+    disp([func, 'Calculating Reaction Return...']);
     TotRxDef = 0;
     rxSumNoLoad = 0;
     for i = 1: 1: bar.NElem % loop through elements
@@ -72,6 +73,7 @@ function [out] = mech_main (varargin)
     for i = 1: 1: bar.NElem % loop through elements
 
     end
+    disp([func, 'Done!']);
 
     %% Put force eq equations into a for loop 
     %  SigmaF = 0
@@ -90,5 +92,5 @@ function [out] = mech_main (varargin)
     % out.UncMDef(bar.NElem) - the unconstrained (no reaction) mechanical deformation of each element
     % out.UncTDef(bar.NElem) - the thermal (no reactions) deformation of each element
     % out.MecDef(bar.NElem) - the mechanical deformation of each element
-
+    disp('****END OF ANALYSIS****');
 end

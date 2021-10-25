@@ -38,8 +38,8 @@ bar(3) = load('Example Models/Mixed2.05.mat').bar;  fprintf('Mixed2.05.mat loade
 bar(4) = load('Example Models/Prob2.06.mat').bar;   fprintf('Prob2.06.mat loaded into bar(4)\n'); %lgf
 
 for i = 1:4
+    fprintf('\n Running mech_main.m on barmodel %i\n', i); %lgf
     out(i) = mech_main(bar(i));
-    fprintf('mech_main run on barmodel %i\n', i);
 end
 
 %% Progam End
