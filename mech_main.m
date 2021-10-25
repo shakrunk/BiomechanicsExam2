@@ -1,4 +1,4 @@
-%% Numerically find integral of [P / A(x) E(x)] dx (if needed)
+%% Generalized Displacement and Internal Stresses Calculation
 % Author(s): 
 %  - Neil A. Kumar
 %  - Linea Gutierrez
@@ -19,23 +19,20 @@
 function [out] = mech_main (varargin)
     %% Initialize
     disp('****COMBINED MECHANICAL/THERMAL AXIAL LOADING ANALYSIS****');
-    if nargin == 0
+    if nargin == 0 % if function was called without an argument
         disp('Reading in new bar model');
-        bar = model_input;
+        bar = model_input; % get model information from user
     else
         disp('Using bar model provided in call');
-        bar = varargin{1};
+        bar = varargin{1}; % using model passed to fuction (first argument)
     end
     
-    
-    
     %% Free Deformation
-    % Mechanical
     UncLoad = 0;
     for i = 1: 1: bar.NElem % loop through elements
-        UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load
-        out.UncLoad(i) = UncLoad;
-        out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
+        UncLoad = UncLoad + bar.EndLoad(i); % Calculates unconstrained end load
+        out.UncLoad(i) = UncLoad; % Saves unconstrained load data in output
+        [out.UncMDef(i), out.UncTDef(i)] = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Alph(i),bar.DeltT(i),bar.Nistp);
     
         % Inconstant Area: integral of [P / A(x) E(x)] dx
         %    linspace(Al, Ar, nsteps)
@@ -44,11 +41,9 @@ function [out] = mech_main (varargin)
         %    cumtrap()
         
     end
-    
-%     disp(bar.EndLoad); %DEBUG
-%     disp(out.UncLoad); %DEBUG
+    % disp(bar.EndLoad); %DEBUG
+    % disp(out.UncLoad); %DEBUG
 
-    % Thermal
         % Alph, Leng, DeltT
         % if DeltT == 0; 
         %      continue;

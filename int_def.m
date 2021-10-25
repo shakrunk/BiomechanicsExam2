@@ -8,19 +8,22 @@
 % -------------------------------------------------------------------------
 % All units are generalizable to both SI or U.S. customary units (use only
 % one) and are represented with "u:" followed by the unit type:
-%  - force     || Force units - N or lbs
-%  - distance  || Distance units - m or in
-%  - area      || Area units - m^2 or in^2
-%  - pressure  || Pressure or stress units - Pa (N/m^2) or psi (lbs/in^2)
-%  - na        || Unitless value
+%  - force      || Force units - N or lbs
+%  - distance   || Distance units - m or in
+%  - area       || Area units - m^2 or in^2
+%  - pressure   || Pressure or stress units - Pa (N/m^2) or psi (lbs/in^2)
+%  - temp       || Tepmerature units - °C (°K-273.15) or °F
+%  - na         || Unitless value
 % -------------------------------------------------------------------------
-function [defTot] = int_def (P,L,A1,A2,E1,E2,step)
+function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
     % P - Applied load                                  || u:force
     % L - Height of cylinder                            || u:distance
     % A1 - Crosssectional area (near)                   || u:area
     % A2 - Crosssectional area (end)                    || u:area
     % E1 - Young's Modulus of material (near)           || u:pressure
     % E2 - Young's Modulus of material (end)            || u:pressure
+    % alpha - Coef of Thermal Expansion                 || u:temp^(-1)
+    % deltaT - Change in Temperature                    || u:temp
     % step - Number of integration steps                || u:na
     
     % Calculate Neccessary Variables
@@ -33,21 +36,30 @@ function [defTot] = int_def (P,L,A1,A2,E1,E2,step)
     dL = L/step; % differential change in height        || u:distance
     
     % Loop Prep
-    defTot = 0; % Create variable for total deformation/set to 0
-    for i = 1:step % loops through integration steps
+    defMTot = 0; % Create variable for total mechanical deformation
+    defTTot = 0; % Create vairable for total thermal deformation
+    
+    % Loop through integration steps
+    for i = 1:step 
+        
         % Midpoint Riemann Sum - Midpoint Radius
         unitC1 = C1 - dC*i; 
         unitC2 = C1 - dC*(i-1);
         unitC = (unitC1 + unitC2)/2;
+        A = pi*unitC^2; % crossectional area of unit
         
         % Midpoint Riemann Sum - Midpoint Modulus
         unitE1 = E1 - dE*i; 
         unitE2 = E1 - dE*(i-1);
         unitE = (unitE1 + unitE2)/2;
 
-        A = pi*unitC^2; % crossectional area of unit
-        dDef = defCylinder(P,dL,A,unitE); % differential change in deforamtion
-        defTot = defTot + dDef; % update total deformation
+        % Calculate differential change in deformation
+        dMDef = defCylinder(P,dL,A,unitE);      % Mechanical
+        dTDef = alpha*deltaT*dL;                % Thermal
+        
+        % Update Total Deformation
+        defMTot = defMTot + dMDef;              % Mechanical
+        defTTot = defTTot + dTDef;              % Thermal
     end
 
 end
