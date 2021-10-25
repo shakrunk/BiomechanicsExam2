@@ -21,7 +21,7 @@ cls; % alias used for ease; does following commands:
         % clc;       % clear the command line
 
 % Formatting and Metadata
-format long g;
+format short e;
 fprintf("<strong># ~/denkr/Documents/School/UCD/'5. BIOE.3020.H01 - BioMechanics'/Matlab/BiomechanicsExam2 m</strong>\n");
 fprintf("<strong># File: run.m</strong>\n");
 fprintf("<strong># Title: Exam 2 Take-Home Portion</strong>\n");
