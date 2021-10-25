@@ -51,7 +51,7 @@ function [out] = mech_main (varargin)
         %      % Do something
 
     %% Reaction Return
-    
+    TotRxDef = out.UncMDef + out.UncTDef;
   
     %% Put force eq equations into a for loop 
     %  SigmaF = 0
