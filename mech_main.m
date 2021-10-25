@@ -27,6 +27,8 @@ function [out] = mech_main (varargin)
         bar = varargin{1};
     end
     
+    
+    
     %% Free Deformation
     % Mechanical
     UncLoad = 0;
@@ -34,13 +36,34 @@ function [out] = mech_main (varargin)
         UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load
         out.UncLoad(i) = UncLoad;
         out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
+    
+        % Inconstant Area: integral of [P / A(x) E(x)] dx
+        %    linspace(Al, Ar, nsteps)
+        %    linspace(0, L2, nsteps)
+        %    trapz() 
+        %    cumtrap()
         
     end
+    
 %     disp(bar.EndLoad); %DEBUG
 %     disp(out.UncLoad); %DEBUG
+
     % Thermal
+        % Alph, Leng, DeltT
 
     %% Reaction Return
+    
+  
+    %% Put force eq equations into a for loop 
+    %  SigmaF = 0
+    %  for j = 1:1:bar.NElem
+    %      SigmaF = bar.EndLoad(j) + bar.EndLoad(j+1)
+    
+    %% Put moment equations into a for loop 
+    %  SigmaF = 0
+    %  for k = 1:1:bar.NElem
+    %      SigmaF = bar.EndLoad(k)*bar.Leng(k) + bar.EndLoad(k+1)*Len(k+1)
+    %      % Assign output to variable
     
     %% OUTPUT SHOULD CONTAIN
     % out.React0 - reaction at right side
