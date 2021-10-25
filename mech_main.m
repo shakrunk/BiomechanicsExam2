@@ -35,7 +35,7 @@ function [out] = mech_main (varargin)
     for i = 1: 1: bar.NElem % loop through elements
         UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load
         out.UncLoad(i) = UncLoad;
-        out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
+        [ out.UncMDef(i), out.UncTDef(i) ] = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Alph(i),bar.DeltT(i),bar.Nistp);
     
         % Inconstant Area: integral of [P / A(x) E(x)] dx
         %    linspace(Al, Ar, nsteps)
