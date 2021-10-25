@@ -26,12 +26,14 @@ what work.
 
 ## -- Signatures -- ##
 
-/* * * * * * * * * * * * * * * * * * * * * * * *
- *                                             *
- *   Neil A. Kumar   || Unsigned || Unsigned   *
- *   Linea Gutierrez || Unsigned || Unsigned   *
- *   Elise Carter    || Unsigned || Unsigned   *  
- *                                             *
- * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                                       *
+ *         NAME      || SIGNATURE 1 AND DATE  || SIGNATURE 2 AND DATE    *
+ *   =================================================================   *
+ *   Neil A. Kumar   || Unsigned MMM DD, 2021 || Unsigned MMM DD, 2021   *
+ *   Linea Gutierrez || Unsigned MMM DD, 2021 || Unsigned MMM DD, 2021   *
+ *   Elise Carter    || Unsigned MMM DD, 2021 || Unsigned MMM DD, 2021   *  
+ *                                                                       *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 # End of DivisionOfLabour.txt
