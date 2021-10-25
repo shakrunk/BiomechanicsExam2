@@ -51,8 +51,22 @@ function [out] = mech_main (varargin)
         %      % Do something
 
     %% Reaction Return
-    TotRxDef = out.UncMDef + out.UncTDef;
-  
+    TotRxDef = 0;
+    rxSumNoLoad = 0;
+    for i = 1: 1: bar.NElem % loop through elements
+        rxSumNoLoad = rxSumNoLoad + int_def(1,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),0,0,bar.Nistp);
+        TotRxDef = out.UncMDef(i) + out.UncTDef(i);
+    end
+    out.React0 = TotRxDef / rxSumNoLoad;
+    out.React1 = out.UncLoad(bar.NElem) - out.React0;
+
+    for i = 1: 1: bar.NElem % loop through elements
+        reactDef = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),0,0,bar.Nistp);
+    end
+
+    for i = 1: 1: bar.NElem % loop through elements
+        
+    end
     %% Put force eq equations into a for loop 
     %  SigmaF = 0
     %  for j = 1:1:bar.NElem
