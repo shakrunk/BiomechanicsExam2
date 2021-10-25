@@ -50,6 +50,10 @@ function [out] = mech_main (varargin)
 
     % Thermal
         % Alph, Leng, DeltT
+        % if DeltT == 0; 
+        %      continue;
+        % if DeltT ~= 0
+        %      % Do something
 
     %% Reaction Return
     
