@@ -52,7 +52,6 @@ function [out] = mech_main (varargin)
         % Alph, Leng, DeltT
 
     %% Reaction Return
-<<<<<<< HEAD
     TotRxDef = 0;
     rxSumNoLoad = 0;
     for i = 1: 1: bar.NElem % loop through elements
@@ -69,10 +68,7 @@ function [out] = mech_main (varargin)
     for i = 1: 1: bar.NElem % loop through elements
         
     end
-=======
-    
-  
->>>>>>> 1aea9b8e3e6c16344d64887992c16b85b076bb50
+
     %% Put force eq equations into a for loop 
     %  SigmaF = 0
     %  for j = 1:1:bar.NElem
