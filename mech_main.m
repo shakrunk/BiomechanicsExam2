@@ -68,6 +68,7 @@ function [out] = mech_main (varargin)
         reactDef = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),0,0,bar.Nistp);
     end
 
+    % Calculate total deformation of each element
     for i = 1: 1: bar.NElem % loop through elements
 
     end

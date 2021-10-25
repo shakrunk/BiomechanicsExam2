@@ -1,0 +1,6 @@
+# ~/denkr/Documents/School/College/UCD/'5. BIOE-3040-H01 - BioMechanics'/Matlab/BiomechanicsExam2 text
+# File: DivisionOfLabour.txt
+# Authors:
+# - Neil A. Kumar    || (unsigned)
+# - Linea Gutierrez  || (unsigned)
+# - Elise Carter     || (unsigned)
