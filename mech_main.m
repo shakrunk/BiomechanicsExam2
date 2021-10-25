@@ -1,4 +1,4 @@
-%% Generalized Displacement and Internal Stresses Calculation
+%% Numerically find integral of [P / A(x) E(x)] dx (if needed)
 % Author(s): 
 %  - Neil A. Kumar
 %  - Linea Gutierrez
@@ -19,20 +19,23 @@
 function [out] = mech_main (varargin)
     %% Initialize
     disp('****COMBINED MECHANICAL/THERMAL AXIAL LOADING ANALYSIS****');
-    if nargin == 0 % if function was called without an argument
+    if nargin == 0
         disp('Reading in new bar model');
-        bar = model_input; % get model information from user
+        bar = model_input;
     else
         disp('Using bar model provided in call');
-        bar = varargin{1}; % using model passed to fuction (first argument)
+        bar = varargin{1};
     end
     
+    
+    
     %% Free Deformation
+    % Mechanical
     UncLoad = 0;
     for i = 1: 1: bar.NElem % loop through elements
-        UncLoad = UncLoad + bar.EndLoad(i); % Calculates unconstrained end load
-        out.UncLoad(i) = UncLoad; % Saves unconstrained load data in output
-        [out.UncMDef(i), out.UncTDef(i)] = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Alph(i),bar.DeltT(i),bar.Nistp);
+        UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load
+        out.UncLoad(i) = UncLoad;
+        out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
     
         % Inconstant Area: integral of [P / A(x) E(x)] dx
         %    linspace(Al, Ar, nsteps)
@@ -41,16 +44,15 @@ function [out] = mech_main (varargin)
         %    cumtrap()
         
     end
-    % disp(bar.EndLoad); %DEBUG
-    % disp(out.UncLoad); %DEBUG
+    
+%     disp(bar.EndLoad); %DEBUG
+%     disp(out.UncLoad); %DEBUG
 
+    % Thermal
         % Alph, Leng, DeltT
-        % if DeltT == 0; 
-        %      continue;
-        % if DeltT ~= 0
-        %      % Do something
 
     %% Reaction Return
+<<<<<<< HEAD
     TotRxDef = 0;
     rxSumNoLoad = 0;
     for i = 1: 1: bar.NElem % loop through elements
@@ -67,16 +69,14 @@ function [out] = mech_main (varargin)
     for i = 1: 1: bar.NElem % loop through elements
         
     end
+=======
+    
+  
+>>>>>>> 1aea9b8e3e6c16344d64887992c16b85b076bb50
     %% Put force eq equations into a for loop 
     %  SigmaF = 0
     %  for j = 1:1:bar.NElem
-    %      SigmaF = bar.EndLoad(j) + bar.EndLoad(j+1)
-    
-    %% Put moment equations into a for loop 
-    %  SigmaF = 0
-    %  for k = 1:1:bar.NElem
-    %      SigmaF = bar.EndLoad(k)*bar.Leng(k) + bar.EndLoad(k+1)*Len(k+1)
-    %      % Assign output to variable
+    %   
     
     %% OUTPUT SHOULD CONTAIN
     % out.React0 - reaction at right side
