@@ -1,6 +1,32 @@
 # ~/denkr/Documents/School/College/UCD/'5. BIOE-3040-H01 - BioMechanics'/Matlab/BiomechanicsExam2 text
 # File: DivisionOfLabour.txt
 # Authors:
-# - Neil A. Kumar    || (unsigned)
-# - Linea Gutierrez  || (unsigned)
-# - Elise Carter     || (unsigned)
+# - Neil A. Kumar    
+# - Linea Gutierrez  
+# - Elise Carter
+
+## -- Purpose -- ##
+The purpose of this file is to dictate how work for the take home portion of Exam 2 in Dr. Kendall Hunter's 
+Introduction to Biomechanics class (BIOE-3040-H01) will be divided amongst the three of us. This file will 
+also serve to document who does what work, without regard for the initial assignment.
+
+## -- Format -- ##
+Each group member will provide two signatures at the bottom of this document: the first to indicate that 
+the written assignments were agreed to, the second to indicate that the document acurately represents who 
+did what work.
+
+## -- Work Definition -- ##
+
+## -- Work Assignment -- ##
+
+## -- Work Done -- ##
+
+## -- Signatures -- ##
+
+/* * * * * * * * * * * * * * * * * * * * * * * *
+ *                                             *
+ *   Neil A. Kumar   || Unsigned || Unsigned   *
+ *   Linea Gutierrez || Unsigned || Unsigned   *
+ *   Elise Carter    || Unsigned || Unsigned   *  
+ *                                             *
+ * * * * * * * * * * * * * * * * * * * * * * * */
