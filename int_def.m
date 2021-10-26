@@ -40,18 +40,32 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
     defTTot = 0; % Create vairable for total thermal deformation
     
     % Loop through integration steps
-    for i = 1:step 
+    for i = 1:step;
         
         % Midpoint Riemann Sum - Midpoint Area
         unitA1 = A1 - dA*i;  % Area on the left || u:area
         unitA2 = A1 - dA*(i-1); % Area on the right
         A = (unitA1 + unitA2)/2; % midpoint
         
+        
         % Midpoint Riemann Sum - Midpoint Modulus
         unitE1 = E1 - dE*i; 
         unitE2 = E1 - dE*(i-1);
         unitE = (unitE1 + unitE2)/2;
-
+        
+        % Prove convergence 
+        % Idea: We could prove convergence by making a loop that computes the integral for several step values and then plot that, but it would have to be in "run.m"
+        
+        % tol = 5e-8;
+        % imax = 100;
+        
+        % while (abs(A)<tol) & i < imax;
+        %    i = i + 1
+        
+        % while (abs(unitE)<tol) & i < imax;
+        %    i = i + 1
+        %    plot(unitE)
+        
         % Calculate differential change in deformation
         dMDef = defCylinder(P,dL,A,unitE);      % Mechanical
         
@@ -60,6 +74,7 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
         % Update Total Deformation
         defMTot = defMTot + dMDef;              % Mechanical
         defTTot = defTTot + dTDef;              % Thermal
+        
     end
     % For loop goes through start and end areas. Must be removed from defT
     defTTot = defTTot - alpha*deltaT*dL*2; 

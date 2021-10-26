@@ -21,7 +21,8 @@ what work.
 ## -- Work Definition -- ##
 run script
 integration function
-free deformation
+Proof of convergence
+free deformation (thermal and mechanical)
 reaction return
 error analysis
 
