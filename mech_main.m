@@ -74,11 +74,18 @@ function [out] = mech_main (varargin)
 
     end
     disp([func, 'Done!']); %lgf
-
+    
     %% Put force eq equations into a for loop 
-    %  SigmaF = 0
-    %  for j = 1:1:bar.NElem
-    %   
+     %  SigmaF = 0
+     %  for j = 1:1:bar.NElem
+     %
+     %  end
+     
+    % Calculate total load for each element
+     for j = 1:1:bar.NElem
+         out.TotLoad(j) = out.React0(1) + out.UncLoad(j);
+     end
+         
     
     %% OUTPUT SHOULD CONTAIN
     % out.React0 - reaction at right side
