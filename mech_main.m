@@ -19,7 +19,7 @@
 function [out] = mech_main (varargin)
     %% Initialize
     disp('****COMBINED MECHANICAL/THERMAL AXIAL LOADING ANALYSIS****');
-    func = sprintf('mech_main.m || ');
+    func = sprintf('mech_main.m || '); %Look good formatting (lgf)
     if nargin == 0
         disp([func, 'Reading in new bar model']);
         bar = model_input;
@@ -32,7 +32,7 @@ function [out] = mech_main (varargin)
     
     %% Free Deformation
     % Mechanical / Thermal
-    disp([func, 'Calculating Free Deformation...']);
+    disp([func, 'Calculating Free Deformation...']); %lgf
     UncLoad = 0;
     for i = 1: 1: bar.NElem % loop through elements
         UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load
@@ -46,13 +46,13 @@ function [out] = mech_main (varargin)
         %    cumtrap()
         
     end
-    disp([func, 'Done!']);
+    disp([func, 'Done!']); %lgf
     
 %     disp(bar.EndLoad); %DEBUG
 %     disp(out.UncLoad); %DEBUG
 
     %% Reaction Return
-    disp([func, 'Calculating Reaction Return...']);
+    disp([func, 'Calculating Reaction Return...']); %lgf
     TotRxDef = 0;
     rxSumNoLoad = 0;
     for i = 1: 1: bar.NElem % loop through elements
@@ -73,7 +73,7 @@ function [out] = mech_main (varargin)
     for i = 1: 1: bar.NElem % loop through elements
 
     end
-    disp([func, 'Done!']);
+    disp([func, 'Done!']); %lgf
 
     %% Put force eq equations into a for loop 
     %  SigmaF = 0
