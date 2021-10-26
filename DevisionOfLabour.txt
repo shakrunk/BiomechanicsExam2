@@ -26,6 +26,7 @@ free deformation (thermal and mechanical)
 reaction return
 error analysis
 check for whether or not the problem is statically indeterminent. 
+Accounting for gap
 
 ## -- Work Assignment -- ##
 
