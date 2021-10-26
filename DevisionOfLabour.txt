@@ -19,20 +19,85 @@ to, the second to indicate that the document acurately represents who did
 what work.
 
 ## -- Work Definition -- ##
-run script
-integration function
-Proof of convergence
-free deformation (thermal and mechanical)
-reaction return
-error analysis
-check for whether or not the problem is statically indeterminent. 
-Accounting for gap
+
+Run Script
+    Load Examples
+    Run Analysis
+    Print Output
+    Comparison (to known values)
+Integration Function
+    Mechanical Deformation
+    Thermal Deformation
+    Proof of Convergence
+    Error Analysis
+Indeterminancy
+    Check for Indeterminancy
+    Free Deformation
+        out.UncLoad(bar.NElem)
+        out.UncMDef(bar.NElem)
+        out.UncTDef(bar.NElem)
+    Reaction Return
+        out.React0
+        out.React1
+Determinant System
+    out.TotLoad(bar.NElem)
+    out.TotDef(bar.NElem)
+    out.Stress(bar.NElem)
+    out.MecDef(bar.NElem)
+Misc
+    Publish to PDF
+    Documentation Enforcement
+        Presence
+        Consistency
+    Quabity Assuance
 
 ## -- Work Assignment -- ##
 
+Neil
+    Run Script/Load Examples
+    Run Script/Run Analysis
+    Integration Function/Mechanical Deformation (? TBD)
+    Itegration Function/Thermal Deformation (? TBD)
+    Indeterminancy/Free Deformation/*
+    Indeterminancy/Reaction Return/*
+Linea
+Elise
+
 ## -- Work Done -- ##
 
+Neil
+    Run Script/Load Examples
+    Run Script/Run Analysis
+    Integration Function/Mechanical Deformation (? TBD)
+    Itegration Function/Thermal Deformation (? TBD)
+    Indeterminancy/Free Deformation/*
+    Indeterminancy/Reaction Return/*
+Linea
+Elise
+
+## -- Tasks Needing Person Assignment -- ##
+    
+    Run Stript/Print Output
+    Run Stript/Comparison (to known values)
+    Integration Function/Proof of Convergence
+    Integration Function/Error Analysis
+    Indeterminancy/Check for Indeterminancy
+    Determinant System/out.TotLoad(bar.NElem)
+    Determinant System/out.TotDef(bar.NElem)
+    Determinant System/out.Stress(bar.NElem)
+    Determinant System/out.MecDef(bar.NElem)
+    Misc/Publish to PDF
+    Misc/Documentation Enforcement/Presence
+    Misc/Documentation Enforcement/Consistency
+    Misc/Quality Assurance
+
 ## -- Additional Notes -- ##
+
+Status of the following:
+    Integration Function/Mechanical Deformation
+    Itegration Function/Thermal Deformation
+are TBD as they may need to be changed or split depending on the proof of
+convergence.
 
 ## -- Signatures -- ##
 
@@ -40,7 +105,7 @@ Accounting for gap
  *                                                                       *
  *         NAME      || SIGNATURE 1 AND DATE  || SIGNATURE 2 AND DATE    *
  *   =================================================================   *
- *   Neil A. Kumar   || Unsigned MMM DD, 2021 || Unsigned MMM DD, 2021   *
+ *   Neil A. Kumar   ||  Signed Oct 26, 2021  || Unsigned MMM DD, 2021   *
  *   Linea Gutierrez || Unsigned MMM DD, 2021 || Unsigned MMM DD, 2021   *
  *   Elise Carter    || Unsigned MMM DD, 2021 || Unsigned MMM DD, 2021   *  
  *                                                                       *
