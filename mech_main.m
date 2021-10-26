@@ -64,14 +64,14 @@ function [out] = mech_main (varargin)
     out.React0 = TotRxDef / rxSumNoLoad;
     out.React1 = - (out.UncLoad(bar.NElem) + out.React0);
 
-    % Calculate reaction deformation of each element
+    % Calculate reaction deformation of each element    ? why does this say reaction deformation? 
     for i = 1: 1: bar.NElem % loop through elements
         reactDef = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),0,0,bar.Nistp);
     end
 
     % Calculate total deformation of each element
-    for i = 1: 1: bar.NElem % loop through elements
-
+    for h = 1: 1: bar.NElem % loop through elements
+        out.TotDef(h) = out.UncMDef(h) + out.UncTDef(h)
     end
     disp([func, 'Done!']); %lgf
 
