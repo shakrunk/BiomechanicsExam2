@@ -80,6 +80,11 @@ function [out] = mech_main (varargin)
     %  for j = 1:1:bar.NElem
     %   
     
+     % Calculate total load for each element
+     for j = 1:1:bar.NElem
+         out.TotLoad(j) = out.React0(1) + out.UncLoad(j);
+     end
+    
     %% OUTPUT SHOULD CONTAIN
     % out.React0 - reaction at right side
     % out.React1 - reaction at left side
