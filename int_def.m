@@ -54,11 +54,14 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
 
         % Calculate differential change in deformation
         dMDef = defCylinder(P,dL,A,unitE);      % Mechanical
+        
         dTDef = alpha*deltaT*dL;                % Thermal
         
         % Update Total Deformation
         defMTot = defMTot + dMDef;              % Mechanical
         defTTot = defTTot + dTDef;              % Thermal
     end
+    % For loop goes through start and end areas. Must be removed from defT
+    defTTot = defTTot - alpha*deltaT*dL*2; 
 
 end
