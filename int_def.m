@@ -76,7 +76,4 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
         defTTot = defTTot + dTDef;              % Thermal
         
     end
-    % For loop goes through start and end areas. Must be removed from defT
-    defTTot = defTTot - alpha*deltaT*dL*2; 
-
 end
