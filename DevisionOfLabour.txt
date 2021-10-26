@@ -49,7 +49,7 @@ Misc
     Documentation Enforcement
         Presence
         Consistency
-    Quabity Assuance
+    Quality Assurance
 
 ## -- Work Assignment -- ##
 
@@ -62,6 +62,9 @@ Neil
     Indeterminancy/Reaction Return/*
 Linea
 Elise
+    Determinant System/out.TotLoad(bar.NElem)
+    Determinant System/out.Stress(bar.NElem)
+    Misc/Quality Assurance
 
 ## -- Work Done -- ##
 
@@ -74,6 +77,8 @@ Neil
     Indeterminancy/Reaction Return/*
 Linea
 Elise
+    Determinant System/out.TotLoad(bar.NElem)
+    Determinant System/out.Stress(bar.NElem)
 
 ## -- Tasks Needing Person Assignment -- ##
     
@@ -82,14 +87,11 @@ Elise
     Integration Function/Proof of Convergence
     Integration Function/Error Analysis
     Indeterminancy/Check for Indeterminancy
-    Determinant System/out.TotLoad(bar.NElem)
     Determinant System/out.TotDef(bar.NElem)
-    Determinant System/out.Stress(bar.NElem)
     Determinant System/out.MecDef(bar.NElem)
     Misc/Publish to PDF
     Misc/Documentation Enforcement/Presence
     Misc/Documentation Enforcement/Consistency
-    Misc/Quality Assurance
 
 ## -- Additional Notes -- ##
 
@@ -106,8 +108,8 @@ convergence.
  *         NAME      || SIGNATURE 1 AND DATE  || SIGNATURE 2 AND DATE    *
  *   =================================================================   *
  *   Neil A. Kumar   ||  Signed Oct 26, 2021  || Unsigned MMM DD, 2021   *
- *   Linea Gutierrez || Unsigned MMM DD, 2021 || Unsigned MMM DD, 2021   *
- *   Elise Carter    || Unsigned MMM DD, 2021 || Unsigned MMM DD, 2021   *  
+ *   Linea Gutierrez ||  Unsigned MMM DD, 2021  || Unsigned MMM DD, 2021   *
+ *   Elise Carter    ||  Signed Oct 26, 2021  || Unsigned MMM DD, 2021   *  
  *                                                                       *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
