@@ -19,10 +19,17 @@ to, the second to indicate that the document acurately represents who did
 what work.
 
 ## -- Work Definition -- ##
+run script
+integration function
+free deformation
+reaction return
+error analysis
 
 ## -- Work Assignment -- ##
 
 ## -- Work Done -- ##
+
+## -- Additional Notes -- ##
 
 ## -- Signatures -- ##
 
