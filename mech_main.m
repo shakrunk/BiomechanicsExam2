@@ -80,12 +80,12 @@ function [out] = mech_main (varargin)
     %  for j = 1:1:bar.NElem
     %   
     
-    % Calculate total internal load in each element
+    %% Calculate total internal load in each element
     for j = 1: 1: bar.NElem
-        out.TotLoad(j) = out.React0(1) + out.UncLoad(j);
+        out.TotLoad(j) = out.React0 + out.UncLoad(j);
     end
      
-    % Average normal stress in each element
+    %% Average normal stress in each element
     for k = 1: 1: bar.NElem
         AvgArea = (bar.Area1 + bar.Area2) ./ 2;
         out.Stress(k) = out.TotLoad(k) ./ AvgArea(k);
