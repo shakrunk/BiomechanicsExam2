@@ -40,34 +40,35 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
     defMTot = 0; % Create variable for total mechanical deformation
     defTTot = 0; % Create vairable for total thermal deformation
     
-    % Loop through integration steps
-    
-    for i = 1:step
+    % Send integration through different step sizes
+    for j = 1:5
+        n = [step, 40, 60, 80, 100];
         
-        % Midpoint Riemann Sum - Midpoint Area
-        unitA1 = A1 - dA*i;  % Area on the left || u:area
-        unitA2 = A1 - dA*(i-1); % Area on the right
-        A = (unitA1 + unitA2)/2; % midpoint
-        
-        % we are given two areas, A2 is not used here, should it be? 
-        
-        % Midpoint Riemann Sum - Midpoint Modulus
-        unitE1 = E1 - dE*i; 
-        unitE2 = E1 - dE*(i-1);
-        unitE = (unitE1 + unitE2)/2;
-        
-        % Prove convergence 
-        % Idea: We could prove convergence by making a loop that computes the integral for several step values and then plot that, but it would have to be in "run.m"
-        % Graph lines for different changes in step size and show that the endpoints converge. 
-        
-        % Calculate differential change in deformation
-        dMDef = defCylinder(P,dL,A,unitE);      % Mechanical
-        
-        dTDef = alpha*deltaT*dL;                % Thermal
-        
-        % Update Total Deformation
-        defMTot = defMTot + dMDef;              % Mechanical
-        defTTot = defTTot + dTDef;              % Thermal
-        
+        % Loop through integration steps
+        for i = 1:n
+
+            % Midpoint Riemann Sum - Midpoint Area
+            unitA1 = A1 - dA*i;  % Area on the left || u:area
+            unitA2 = A1 - dA*(i-1); % Area on the right
+            A = (unitA1 + unitA2)/2; % midpoint
+
+            % we are given two areas, A2 is not used here, should it be? 
+
+            % Midpoint Riemann Sum - Midpoint Modulus
+            unitE1 = E1 - dE*i; 
+            unitE2 = E1 - dE*(i-1);
+            unitE = (unitE1 + unitE2)/2;
+
+            % Calculate differential change in deformation
+            dMDef = defCylinder(P,dL,A,unitE);      % Mechanical
+
+            dTDef = alpha*deltaT*dL;                % Thermal
+
+            % Update Total Deformation
+            defMTot = defMTot + dMDef;              % Mechanical
+            defTTot = defTTot + dTDef;              % Thermal
+
+        end
+      % disp(['n = ', n, 'Mechanical Deformation: ', defMTot,'Thermal Deformation', defTTot, 'Done!']) 
     end
 end
