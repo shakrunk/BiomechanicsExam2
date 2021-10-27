@@ -15,7 +15,7 @@
 %  - temp       || Tepmerature units - °C (°K-273.15) or °F
 %  - na         || Unitless value
 % -------------------------------------------------------------------------
-function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
+function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step, step_size)
     % P - Applied load                                  || u:force
     % L - Height of cylinder                            || u:distance
     % A1 - Crosssectional area (near)                   || u:area
@@ -36,11 +36,21 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
     dL = L/step; % height                               || u:distance
     
     % Loop Prep
-    defMTot = 0; % Create variable for total mechanical deformation
-    defTTot = 0; % Create vairable for total thermal deformation
+    step_vector = 0:step_size:step-1;
+    defMTot = zeros(numel(step_vector),1); % Create vector for mechanical deformation (last value is total)
+    defTTot = zeros(numel(step_vector),1); % Create vector for thermal deformation (last value is total)
+    
+    unitA1 = A1 - dA;  % Area on the left || u:area
+    unitA2 = A1; % Area on the right
+    A = (unitA1 + unitA2)/2; % midpoint
+    
+    unitE1 = E1 - dE; 
+    unitE2 = E1;
+    unitE = (unitE1 + unitE2)/2;
+    defMTot(1) = defCylinder(P,dL,A,unitE);
     
     % Loop through integration steps
-    for i = 1:step
+    for i = 2: 1: numel(step_vector) 
         
         % Midpoint Riemann Sum - Midpoint Area
         unitA1 = A1 - dA*i;  % Area on the left || u:area
@@ -72,8 +82,8 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
         dTDef = alpha*deltaT*dL;                % Thermal
         
         % Update Total Deformation
-        defMTot = defMTot + dMDef;              % Mechanical
-        defTTot = defTTot + dTDef;              % Thermal
+        defMTot(i) = defMTot(i-1) + dMDef;              % Mechanical
+        defTTot(i) = defTTot(i-1) + dTDef;              % Thermal
         
     end
 end

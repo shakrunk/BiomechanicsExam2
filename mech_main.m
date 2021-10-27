@@ -34,15 +34,50 @@ function [out] = mech_main (varargin)
     % Mechanical / Thermal
     disp([func, 'Calculating Free Deformation...']); %lgf
     UncLoad = 0;
+    %conv_mat_MDef = cell(numel(step_vec));
+    %conv_mat_TDef = cell(numel(step_vec));
+    %step_vec = linspace(5,bar.Nistp,4);
     for i = 1: 1: bar.NElem % loop through elements
         UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load
         out.UncLoad(i) = UncLoad;
-        [ out.UncMDef(i), out.UncTDef(i) ] = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Alph(i),bar.DeltT(i)-bar.initT,bar.Nistp);
-    
+        step_size_vec = [2, 1, 0.5];
+        conv_mat_MDef = cell(3,1);
+        conv_mat_TDef = cell(3,1);
+        
+        figure
+        for j = 1: 3
+            step_size = step_size_vec(j);
+            [ UncMDef, UncTDef ] = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Alph(i),bar.DeltT(i)-bar.initT,bar.Nistp, step_size);
+            conv_mat_MDef{j} = UncMDef;
+            conv_mat_TDef{j} = UncTDef;
+            if j == 3
+            out.UncMDef(i) = UncMDef(end);
+            out.UncTDef(i) = UncTDef(end);
+            end
+            x_vals = 0: step_size: bar.Nistp-1;
+            plot(x_vals,conv_mat_MDef{j});
+            hold on
+            
+            %title = fprintf('Convergence Plot for Element %s', bar.NElem);
+        end
+        legend('2', '1', '0.5')
+        % Set up for convergence plots
+        
+        
+%         figure
+%         ooop = linspace(0,20, numel(conv_mat_MDef{1}));
+%         plot(ooop, conv_mat_MDef{1})
+%         title = fprintf('Convergence Plot for Element %s (Problem %s)', bar.NElem, prob_num);
+%         title(title)
+%         
+%         
+        
+        
+        
         % Inconstant Area: integral of [P / A(x) E(x)] dx
         %    linspace(Al, Ar, nsteps)
         %    linspace(0, L2, nsteps)
-        %    trapz() 
+        %    trapz()
         %    cumtrap()
         
     end
@@ -57,6 +92,7 @@ function [out] = mech_main (varargin)
     rxSumNoLoad = 0;
     for i = 1: 1: bar.NElem % loop through elements
         rxSumNoLoad = rxSumNoLoad + int_def(1,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),0,0,bar.Nistp);
+        rxSumNoLoad = rxSumNoLoad(end);
         TotRxDef = TotRxDef - (out.UncMDef(i) + out.UncTDef(i));
     end
     
@@ -66,7 +102,8 @@ function [out] = mech_main (varargin)
 
     % Calculate reaction deformation of each element    ? why does this say reaction deformation? 
     for i = 1: 1: bar.NElem % loop through elements
-        reactDef = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),0,0,bar.Nistp);
+        [reactDef, ~] = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),0,0,bar.Nistp);
+        reactDef = reactDef(end);
     end
 
     % Calculate total deformation of each element
