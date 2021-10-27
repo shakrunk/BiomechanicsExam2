@@ -30,6 +30,7 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
     % - Change in:
     deltA = A2-A1; % area from near to end              || u:area
     deltE = E2-E1; % modulus from near to end           || u:pressure
+    
     % - Differential change in:
     dA = deltA/step; % area                             || u:area
     dE = deltE/step; % modulus                          || u:pressure
@@ -47,6 +48,7 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
         unitA2 = A1 - dA*(i-1); % Area on the right
         A = (unitA1 + unitA2)/2; % midpoint
         
+        % we are given two areas, A2 is not used here, should it be? 
         
         % Midpoint Riemann Sum - Midpoint Modulus
         unitE1 = E1 - dE*i; 
@@ -55,16 +57,7 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
         
         % Prove convergence 
         % Idea: We could prove convergence by making a loop that computes the integral for several step values and then plot that, but it would have to be in "run.m"
-        
-        % tol = 5e-8;
-        % imax = 100;
-        
-        % while (abs(A)<tol) & i < imax;
-        %    i = i + 1
-        
-        % while (abs(unitE)<tol) & i < imax;
-        %    i = i + 1
-        %    plot(unitE)
+        % Graph lines for different changes in step size and show that the endpoints converge. 
         
         % Calculate differential change in deformation
         dMDef = defCylinder(P,dL,A,unitE);      % Mechanical
