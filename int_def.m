@@ -38,11 +38,11 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
     
     % Loop Prep
     defMTot = 0; % Create variable for total mechanical deformation
-    defTTot = 0; % Create vairable for total thermal deformation
+    defTTot = 0; % Create variable for total thermal deformation
     
     % Send integration through different step sizes
-    for j = 1:5
-        n = [step, 40, 60, 80, 100];
+    for j = 1:4
+        n = [5, 10, 15, step];
         
         % Loop through integration steps
         for i = 1:n
@@ -51,8 +51,6 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
             unitA1 = A1 - dA*i;  % Area on the left || u:area
             unitA2 = A1 - dA*(i-1); % Area on the right
             A = (unitA1 + unitA2)/2; % midpoint
-
-            % we are given two areas, A2 is not used here, should it be? 
 
             % Midpoint Riemann Sum - Midpoint Modulus
             unitE1 = E1 - dE*i; 
