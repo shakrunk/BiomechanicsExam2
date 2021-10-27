@@ -29,14 +29,13 @@ function [out] = mech_main (varargin)
     end
     
     
-    
     %% Free Deformation
     % Mechanical / Thermal
     disp([func, 'Calculating Free Deformation...']); %lgf
     UncLoad = 0;
     for i = 1: 1: bar.NElem % loop through elements
-        UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load
-        out.UncLoad(i) = UncLoad;
+        UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load 
+        out.UncLoad(i) = UncLoad; % the unconstrained (no reaction) load (P) in each element
         [ out.UncMDef(i), out.UncTDef(i) ] = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Alph(i),bar.DeltT(i)-bar.initT,bar.Nistp);    
     end
     disp([func, 'Done!']); %lgf
