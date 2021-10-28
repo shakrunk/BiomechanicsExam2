@@ -15,7 +15,7 @@
 %  - temp       || Tepmerature units - °C (°K-273.15) or °F
 %  - na         || Unitless value
 % -------------------------------------------------------------------------
-function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step, step_size)
+function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
     % P - Applied load                                  || u:force
     % L - Height of cylinder                            || u:distance
     % A1 - Crosssectional area (near)                   || u:area
@@ -36,9 +36,9 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step, step_s
     dL = L/step; % height                               || u:distance
     
     % Loop Prep
-    step_vector = 0:step_size:step-1;
-    defMTot = zeros(numel(step_vector),1); % Create vector for mechanical deformation (last value is total)
-    defTTot = zeros(numel(step_vector),1); % Create vector for thermal deformation (last value is total)
+    %step_vector = 0:dL:step-1;
+    defMTot = zeros(step,1); % Create vector for mechanical deformation (last value is total)
+    defTTot = zeros(step,1); % Create vector for thermal deformation (last value is total)
     
     unitA1 = A1 - dA;  % Area on the left || u:area
     unitA2 = A1; % Area on the right
@@ -50,7 +50,7 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step, step_s
     defMTot(1) = defCylinder(P,dL,A,unitE);
     
     % Loop through integration steps
-    for i = 2: 1: numel(step_vector) 
+    for i = 2: 1: step 
         
         % Midpoint Riemann Sum - Midpoint Area
         unitA1 = A1 - dA*i;  % Area on the left || u:area
@@ -63,18 +63,6 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step, step_s
         unitE2 = E1 - dE*(i-1);
         unitE = (unitE1 + unitE2)/2;
         
-        % Prove convergence 
-        % Idea: We could prove convergence by making a loop that computes the integral for several step values and then plot that, but it would have to be in "run.m"
-        
-        % tol = 5e-8;
-        % imax = 100;
-        
-        % while (abs(A)<tol) & i < imax;
-        %    i = i + 1
-        
-        % while (abs(unitE)<tol) & i < imax;
-        %    i = i + 1
-        %    plot(unitE)
         
         % Calculate differential change in deformation
         dMDef = defCylinder(P,dL,A,unitE);      % Mechanical

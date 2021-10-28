@@ -40,27 +40,26 @@ function [out] = mech_main (varargin)
     for i = 1: 1: bar.NElem % loop through elements
         UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load
         out.UncLoad(i) = UncLoad;
-        step_size_vec = [2, 1, 0.5];
-        conv_mat_MDef = cell(3,1);
-        conv_mat_TDef = cell(3,1);
+        step_vec = [bar.Nistp/2, bar.Nistp];
+        conv_mat_MDef = cell(2,1);
+        conv_mat_TDef = cell(2,1);
         
         figure
-        for j = 1: 3
-            step_size = step_size_vec(j);
-            [ UncMDef, UncTDef ] = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Alph(i),bar.DeltT(i)-bar.initT,bar.Nistp, step_size);
+        for j = 1: 2
+            step = step_vec(j);
+            [ UncMDef, UncTDef ] = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Alph(i),bar.DeltT(i)-bar.initT,step);
             conv_mat_MDef{j} = UncMDef;
             conv_mat_TDef{j} = UncTDef;
-            if j == 3
+            if j == 2
             out.UncMDef(i) = UncMDef(end);
             out.UncTDef(i) = UncTDef(end);
             end
-            x_vals = 0: step_size: bar.Nistp-1;
+            x_vals = linspace(0, bar.Leng(i), step);
             plot(x_vals,conv_mat_MDef{j});
             hold on
-            
-            %title = fprintf('Convergence Plot for Element %s', bar.NElem);
         end
-        legend('2', '1', '0.5')
+        title(fprintf('Convergence Plot for Element %s', bar.NElem));
+        legend('steps= 10', 'steps = 20')
         % Set up for convergence plots
         
         
