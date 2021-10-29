@@ -27,11 +27,12 @@ function [out] = mech_main (varargin)
         disp([func, 'Using bar model provided in call']);
         bar = varargin{1};
     end
-    
-    % is the problem statically indeterminate 
-    % if unknowns > force eq. equations 
-    %      disp("Equation is statically indeterminate")
-    %      continue;
+   
+    % if gap == 0 
+        % pass 
+    % if gap ~= 0 statically determinent 
+        % disp("Equation is statically indeterminate")
+    % make sure that the gap is closed by deformations, if it closes, it is statically indeterminent again
     
     
     %% Free Deformation
@@ -65,17 +66,13 @@ function [out] = mech_main (varargin)
     for i = 1: 1: bar.NElem % loop through elements
         reactDef = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),0,0,bar.Nistp);
     end
-
+    % Total = sum
+    
     % Calculate total deformation of each element
     for h = 1: 1: bar.NElem % loop through elements
         out.TotDef(h) = out.UncMDef(h) + out.UncTDef(h);
     end
     disp([func, 'Done!']); %lgf
-
-    %% Put force eq equations into a for loop 
-    %  SigmaF = 0
-    %  for j = 1:1:bar.NElem
-    %   
     
     %% Calculate total internal load in each element
     for j = 1: 1: bar.NElem
