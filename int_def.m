@@ -60,7 +60,7 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
             % Calculate differential change in deformation
             dMDef = defCylinder(P,dL,A,unitE);      % Mechanical
 
-            dTDef = alpha*deltaT*dL;                % Thermal
+            dTDef = alpha*deltaT*dL;                % Thermal, this does not need to be integrated, it should be multiplied by length of each element
 
             % Update Total Deformation
             defMTot = defMTot + dMDef;              % Mechanical
