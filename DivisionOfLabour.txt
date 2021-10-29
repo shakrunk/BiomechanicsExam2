@@ -61,7 +61,7 @@ Neil
     Indeterminancy/Free Deformation/*
     Indeterminancy/Reaction Return/*
 Linea
-    Integration function/Proof of convergence 
+    Indeterminancy/Check for indeterminency  
 Elise
     Determinant System/out.TotLoad(bar.NElem)
     Determinant System/out.Stress(bar.NElem)
