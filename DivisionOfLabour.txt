@@ -27,15 +27,18 @@ Run Script
     Comparison (to known values)
 Integration Function
     Mechanical Deformation
-    Thermal Deformation
     Proof of Convergence
     Error Analysis
 Indeterminancy
     Check for Indeterminancy
+    
     Free Deformation
-        out.UncLoad(bar.NElem)
-        out.UncMDef(bar.NElem)
-        out.UncTDef(bar.NElem)
+        Mechanics
+            out.UncLoad(bar.NElem)
+            out.UncMDef(bar.NElem)
+        
+        Thermal Deformation
+            out.UncTDef(bar.NElem)
     Reaction Return
         out.React0
         out.React1
