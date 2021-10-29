@@ -22,11 +22,16 @@ function [out] = mech_main (varargin)
     func = sprintf('mech_main.m || '); %Look good formatting (lgf)
     if nargin == 0
         disp([func, 'Reading in new bar model']);
-        bar = model_input;
+        bar = model_input
     else
         disp([func, 'Using bar model provided in call']);
         bar = varargin{1};
     end
+    
+    % is the problem statically indeterminate 
+    % if unknowns > force eq. equations 
+    %      disp("Equation is statically indeterminate")
+    %      continue;
     
     
     %% Free Deformation
