@@ -39,34 +39,30 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
     % Loop Prep
     defMTot = 0; % Create variable for total mechanical deformation
     defTTot = 0; % Create variable for total thermal deformation
-    
-    % Send integration through different step sizes
-    for j = 1:4
-        n = [5, 10, 15, step];
         
-        % Loop through integration steps
-        for i = 1:n
+    % Loop through integration steps
+    for i = 1:n
 
-            % Midpoint Riemann Sum - Midpoint Area
-            unitA1 = A1 - dA*i;  % Area on the left || u:area
-            unitA2 = A1 - dA*(i-1); % Area on the right
-            A = (unitA1 + unitA2)/2; % midpoint
+        % Midpoint Riemann Sum - Midpoint Area
+        unitA1 = A1 - dA*i;  % Area on the left || u:area
+        unitA2 = A1 - dA*(i-1); % Area on the right
+        A = (unitA1 + unitA2)/2; % midpoint
 
-            % Midpoint Riemann Sum - Midpoint Modulus
-            unitE1 = E1 - dE*i; 
-            unitE2 = E1 - dE*(i-1);
-            unitE = (unitE1 + unitE2)/2;
+        % Midpoint Riemann Sum - Midpoint Modulus
+        unitE1 = E1 - dE*i; 
+        unitE2 = E1 - dE*(i-1);
+        unitE = (unitE1 + unitE2)/2;
 
-            % Calculate differential change in deformation
-            dMDef = defCylinder(P,dL,A,unitE);      % Mechanical
+        % Calculate differential change in deformation
+        dMDef = defCylinder(P,dL,A,unitE);      % Mechanical
 
-            dTDef = alpha*deltaT*dL;                % Thermal, this does not need to be integrated, it should be multiplied by length of each element
+        dTDef = alpha*deltaT*dL;                % Thermal, this does not need to be integrated, it should be multiplied by length of each element
 
-            % Update Total Deformation
-            defMTot = defMTot + dMDef;              % Mechanical
-            defTTot = defTTot + dTDef;              % Thermal
+        % Update Total Deformation
+        defMTot = defMTot + dMDef;              % Mechanical
+        defTTot = defTTot + dTDef;              % Thermal
 
-        end
+    end
       % disp(['n = ', n, 'Mechanical Deformation: ', defMTot,'Thermal Deformation', defTTot, 'Done!']) 
     end
 end
