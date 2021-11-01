@@ -10,6 +10,7 @@
 %  - distance  || Distance units - m or in
 %  - area      || Area units - m^2 or in^2
 %  - pressure  || Pressure or stress units - Pa (N/m^2) or psi (lbs/in^2)
+%  - temp      || Tepmerature units - °C (°K-273.15) or °F
 %  - na        || Unitless value
 % -------------------------------------------------------------------------
 function [def] = defCylinder(P,L,A,E)
