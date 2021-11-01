@@ -13,6 +13,7 @@ also serve to document who does what work, without regard for the initial
 assignment.
 
 ## -- Format -- ##
+
 Each group member will provide two signatures at the bottom of this 
 document: the first to indicate that the written assignments were agreed 
 to, the second to indicate that the document acurately represents who did 
