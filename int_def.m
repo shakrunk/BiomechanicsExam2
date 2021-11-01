@@ -41,7 +41,7 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
     defTTot = 0; % Create variable for total thermal deformation
         
     % Loop through integration steps
-    for i = 1:n
+    for i = 1:step
 
         % Midpoint Riemann Sum - Midpoint Area
         unitA1 = A1 - dA*i;  % Area on the left || u:area
