@@ -22,7 +22,7 @@ function [out] = mech_main (varargin)
     func = sprintf('mech_main.m || '); %Look good formatting (lgf)
     if nargin == 0
         disp([func, 'Reading in new bar model']);
-        bar = model_input
+        bar = model_input;
     else
         disp([func, 'Using bar model provided in call']);
         bar = varargin{1};
@@ -42,7 +42,8 @@ function [out] = mech_main (varargin)
     for i = 1: 1: bar.NElem % loop through elements
         UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load 
         out.UncLoad(i) = UncLoad; % the unconstrained (no reaction) load (P) in each element
-        [ out.UncMDef(i), out.UncTDef(i) ] = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Alph(i),bar.DeltT(i)-bar.initT,bar.Nistp);    
+        out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
+        out.UncTDef(i) = defThermo(bar.Alph(i),bar.DeltT(i)-bar.initT,bar.Leng(i));
     end
     disp([func, 'Done!']); %lgf
     
@@ -54,7 +55,7 @@ function [out] = mech_main (varargin)
     TotRxDef = 0;
     rxSumNoLoad = 0;
     for i = 1: 1: bar.NElem % loop through elements
-        rxSumNoLoad = rxSumNoLoad + int_def(1,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),0,0,bar.Nistp);
+        rxSumNoLoad = rxSumNoLoad + int_def(1,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
         TotRxDef = TotRxDef - (out.UncMDef(i) + out.UncTDef(i));
     end
     
@@ -64,7 +65,7 @@ function [out] = mech_main (varargin)
 
     % Calculate reaction deformation of each element
     for i = 1: 1: bar.NElem % loop through elements
-        reactDef = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),0,0,bar.Nistp);
+        reactDef = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
     end
     % Total = sum
     

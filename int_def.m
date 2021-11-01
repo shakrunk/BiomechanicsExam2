@@ -15,15 +15,13 @@
 %  - temp       || Tepmerature units - °C (°K-273.15) or °F
 %  - na         || Unitless value
 % -------------------------------------------------------------------------
-function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
+function [defMTot] = int_def (P,L,A1,A2,E1,E2,step)
     % P - Applied load                                  || u:force
     % L - Height of cylinder                            || u:distance
     % A1 - Crosssectional area (near)                   || u:area
     % A2 - Crosssectional area (end)                    || u:area
     % E1 - Young's Modulus of material (near)           || u:pressure
     % E2 - Young's Modulus of material (end)            || u:pressure
-    % alpha - Coef of Thermal Expansion                 || u:temp^(-1)
-    % deltaT - Change in Temperature                    || u:temp
     % step - Number of integration steps                || u:na
     
     % Calculate Neccessary Variables
@@ -38,27 +36,24 @@ function [defMTot, defTTot] = int_def (P,L,A1,A2,E1,E2,alpha,deltaT,step)
     
     % Loop Prep
     defMTot = 0; % Create variable for total mechanical deformation
-    defTTot = 0; % Create variable for total thermal deformation
         
     % Loop through integration steps
-    for i = 1:n
+    for i = 1:step
 
-        % Midpoint Riemann Sum - Midpoint Area
-        unitA1 = A1 - dA*i;  % Area on the left || u:area
-        unitA2 = A1 - dA*(i-1); % Area on the right
-        A = (unitA1 + unitA2)/2; % midpoint
+        % Area - Left and Right
+        unitA1 = A1 - dA*i;  % Area on the left         || u:area
+        unitA2 = A1 - dA*(i-1); % Area on the right     || u:area
 
-        % Midpoint Riemann Sum - Midpoint Modulus
-        unitE1 = E1 - dE*i; 
-        unitE2 = E1 - dE*(i-1);
-        unitE = (unitE1 + unitE2)/2;
+        % Modulus - Left and Right
+        unitE1 = E1 - dE*i;  % Modulus on the left      || u:pressure
+        unitE2 = E1 - dE*(i-1);  % Modulus on the right || u:pressure
 
         % Calculate differential change in deformation
-        dMDef = defCylinder(P,dL,A,unitE);      % Mechanical
+        unitMDef1 = defCylinder(P,dL,unitA1,unitE1); % Right
+        unitMDef2 = defCylinder(P,dL,unitA2,unitE2); % Left
+        dMDef = (unitMDef1 + unitMDef2)/2; % Midpoint
 
-        % Update Total Deformation
-        defMTot = defMTot + dMDef;              % Mechanical
+        % Update Total Mechanical Deformation
+        defMTot = defMTot + dMDef; %                    || u:distance
     end
-    dTDef = alpha*deltaT*L; 
-    defTTot = defTTot + dTDef;              % Thermal
 end
