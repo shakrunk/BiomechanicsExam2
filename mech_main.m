@@ -42,8 +42,13 @@ function [out] = mech_main (varargin)
     for i = 1: 1: bar.NElem % loop through elements
         UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load 
         out.UncLoad(i) = UncLoad; % the unconstrained (no reaction) load (P) in each element
+<<<<<<< HEAD
         out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
         out.UncTDef(i) = defThermo(bar.Alph(i),bar.DeltT(i)-bar.initT,bar.Leng(i));
+=======
+        out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);    
+        out.UncTDef(i) = defTherm(bar.Alph(i),bar.DeltT(i)-bar.initT, bar.Leng(i))
+>>>>>>> bccd027424ccc0b45a7545d4ae2e1c1182ad4f09
     end
     disp([func, 'Done!']); %lgf
     
