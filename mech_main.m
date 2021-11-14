@@ -31,7 +31,7 @@ function [out] = mech_main (varargin)
     if gap == 0 
         continue;
     if gap ~= 0 % statically determinent 
-        disp("Equation is statically indeterminate"
+        disp("Equation is statically indeterminate")
         
     % make sure that the gap is closed by deformations, if it closes, it is statically indeterminent again
     
