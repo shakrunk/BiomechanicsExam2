@@ -27,10 +27,6 @@ function [out] = mech_main (varargin)
         disp([func, 'Using bar model provided in call']);
         bar = varargin{1};
     end
-   
-    if bar.EndGap ~= 0
-        disp("Gap exists, problem may be statically determinate"); 
-    end
     % make sure that the gap is closed by deformations, if it closes, it is statically indeterminent again
     
     
@@ -75,6 +71,13 @@ function [out] = mech_main (varargin)
     % Calculate total deformation of each element
     for h = 1: 1: bar.NElem % loop through elements
         out.TotDef(h) = out.UncMDef(h) + out.UncTDef(h);
+    end
+    
+    if bar.EndGap ~= 0
+        disp("Gap exists, problem may be statically determinate"); 
+        if bar.EndGap >= out.TotDef
+            disp("Gap was closed, problem is statically indeterminate. Continue"); 
+        end
     end
     disp([func, 'Done!']); %lgf
     
