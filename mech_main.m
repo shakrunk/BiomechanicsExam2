@@ -29,7 +29,7 @@ function [out] = mech_main (varargin)
     end
    
     if bar.EndGap ~= 0
-        disp("Equation may be statically indeterminate"); 
+        disp("Gap exists, problem may be statically determinate"); 
     end
     % make sure that the gap is closed by deformations, if it closes, it is statically indeterminent again
     
