@@ -38,7 +38,7 @@ function [out] = mech_main (varargin)
 
         out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
         out.UncTDef(i) = defThermo(bar.Alph(i),bar.DeltT(i)-bar.initT,bar.Leng(i));
-        FreeDefSum = out.UncMDef(i) + out.UncMDef(i);
+        FreeDefSum = out.UncMDef(i) + out.UncTDef(i);
     end
     disp([func, 'Done!']); %lgf
     
