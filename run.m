@@ -34,8 +34,8 @@ fprintf("<strong># Dependencies:</strong> cls.m | Mixed2.05.mat | Prob2.04.mat |
 fprintf('\n- Loading in example models -\n'); % Look good formatting (lgf)
 bar(1) = load('Example Models/Prob2.04.mat').bar;   fprintf('Prob2.04.mat loaded into bar(1)\n'); %lgf
 bar(2) = load('Example Models/Prob2.05.mat').bar;   fprintf('Prob2.05.mat loaded into bar(2)\n'); %lgf
-bar(3) = load('Example Models/Mixed2.05.mat').bar;  fprintf('Mixed2.05.mat loaded into bar(3)\n'); %lgf
-bar(4) = load('Example Models/Prob2.06.mat').bar;   fprintf('Prob2.06.mat loaded into bar(4)\n'); %lgf
+bar(3) = load('Example Models/Prob2.06.mat').bar;   fprintf('Prob2.06.mat loaded into bar(3)\n'); %lgf
+bar(4) = load('Example Models/Mixed2.05.mat').bar;  fprintf('Mixed2.05.mat loaded into bar(4)\n'); %lgf
 
 for i = 1:4
     fprintf('\n Running mech_main.m on bar model %i\n', i); %lgf

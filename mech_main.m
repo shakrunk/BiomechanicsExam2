@@ -26,9 +26,7 @@ function [out] = mech_main (varargin)
     else
         disp([func, 'Using bar model provided in call']);
         bar = varargin{1};
-    end
-    % make sure that the gap is closed by deformations, if it closes, it is statically indeterminent again
-    
+    end    
     
     %% Free Deformation
     % Mechanical / Thermal
@@ -40,9 +38,15 @@ function [out] = mech_main (varargin)
 
         out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
         out.UncTDef(i) = defThermo(bar.Alph(i),bar.DeltT(i)-bar.initT,bar.Leng(i));
-        
     end
     disp([func, 'Done!']); %lgf
+    
+    if bar.EndGap ~= 0
+        disp([func,'Gap, problem may be statically determinate']); 
+        if bar.EndGap >= out.UncTDef
+            disp([func,'Gap closed. Indeterminate']); 
+        end
+    end
     
 %     disp(bar.EndLoad); %DEBUG
 %     disp(out.UncLoad); %DEBUG
@@ -51,8 +55,11 @@ function [out] = mech_main (varargin)
     disp([func, 'Calculating Reaction Return...']); %lgf
     TotRxDef = 0;
     rxSumNoLoad = 0;
+    
+    % We're getting this wrong on the problems that have a gap
+    
     for i = 1: 1: bar.NElem % loop through elements
-        rxSumNoLoad = rxSumNoLoad + int_def(1,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
+        rxSumNoLoad = rxSumNoLoad + int_def(1,bar.Leng(i), bar.Area1(i), bar.Area2(i), bar.Modu1(i), bar.Modu2(i), bar.Nistp);
         TotRxDef = TotRxDef - (out.UncMDef(i) + out.UncTDef(i));
     end
     
@@ -62,20 +69,10 @@ function [out] = mech_main (varargin)
 
     % Calculate reaction deformation of each element
     for i = 1: 1: bar.NElem % loop through elements
-        out.ReactDef = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
-    end
-    % Total = sum
-    
-    % Calculate total deformation of each element
-    for h = 1: 1: bar.NElem % loop through elements
-        out.TotDef(h) = out.UncMDef(h) + out.UncTDef(h) + out.ReactDef;
-    end
-    
-    if bar.EndGap ~= 0
-        disp("Gap exists, problem may be statically determinate"); 
-        if bar.EndGap >= out.TotDef
-            disp("Gap was closed, problem is statically indeterminate. Continue"); 
-        end
+        out.ReactDef(i) = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
+
+        out.MecDef(i) = out.UncMDef(i) + out.ReactDef(i);
+        out.TotDef(i) = out.UncMDef(i) + out.UncTDef(i) + out.ReactDef(i); 
     end
     disp([func, 'Done!']); %lgf
     

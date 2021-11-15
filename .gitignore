@@ -1,2 +1,3 @@
 # ignores matlab autosavefiles
 *.asv
+mech_main_Editing.m
