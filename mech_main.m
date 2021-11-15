@@ -31,28 +31,37 @@ function [out] = mech_main (varargin)
     %% Free Deformation
     % Mechanical / Thermal
     disp([func, 'Calculating Free Deformation...']); %lgf
+    
+    % Loop setup
     UncLoad = 0;
+    FreeDefSum = 0;
     for i = 1: 1: bar.NElem % loop through elements
         UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load 
         out.UncLoad(i) = UncLoad; % the unconstrained (no reaction) load (P) in each element
 
+        % Calculate unconstrained mechanical deformation and store output
         out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
+
+        % Calculate unconstrained thermal deformation and store output
         out.UncTDef(i) = defThermo(bar.Alph(i),bar.DeltT(i)-bar.initT,bar.Leng(i));
-        FreeDefSum = out.UncMDef(i) + out.UncTDef(i);
+        
+        FreeDefSum = FreeDefSum + out.UncMDef(i) + out.UncTDef(i);
     end
     disp([func, 'Done!']); %lgf
     
+    %% Check Gap
+    disp([func, 'Checking if there is a gap...']); %lgf
     if bar.EndGap ~= 0
-        disp([func,'Gap, problem may be statically determinate']); 
+        disp([func,'Gap, problem may be statically determinate...']); %lgf
         if bar.EndGap <= FreeDefSum
-            disp([func,'Gap closed. Indeterminate']); 
+            disp([func,'Gap closed. Indeterminate']); %lgf
         else 
-            disp([func,'Gap not closed. Determinate']);
+            disp([func,'Gap not closed. Determinate']); %lgf
         end
+    else
+        disp([func, 'No Gap']);
     end
-    
-%     disp(bar.EndLoad); %DEBUG
-%     disp(out.UncLoad); %DEBUG
+    disp([func, 'Done!']); %lgf
 
     %% Reaction Return
     disp([func, 'Calculating Reaction Return...']); %lgf
@@ -67,7 +76,7 @@ function [out] = mech_main (varargin)
     end
     
     % Calculate Reaction Forces
-    out.React0 = TotRxDef / rxSumNoLoad;
+    out.React0 = (TotRxDef + bar.EndGap) / rxSumNoLoad;
     out.React1 = - (out.UncLoad(bar.NElem) + out.React0);
 
     % Calculate reaction deformation of each element
@@ -79,12 +88,12 @@ function [out] = mech_main (varargin)
     end
     disp([func, 'Done!']); %lgf
     
-    %% Calculate total internal load in each element
+    % Calculate total internal load in each element
     for j = 1: 1: bar.NElem
         out.TotLoad(j) = out.React0 + out.UncLoad(j);
     end
      
-    %% Average normal stress in each element
+    % Average normal stress in each element
     for k = 1: 1: bar.NElem
         AvgArea = (bar.Area1 + bar.Area2) ./ 2;
         out.Stress(k) = out.TotLoad(k) ./ AvgArea(k);
