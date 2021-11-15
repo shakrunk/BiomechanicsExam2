@@ -38,6 +38,11 @@ bar(3) = load('Example Models/Mixed2.05.mat').bar;  fprintf('Mixed2.05.mat loade
 bar(4) = load('Example Models/Prob2.06.mat').bar;   fprintf('Prob2.06.mat loaded into bar(4)\n'); %lgf
 
 for i = 1:4
+    % the if statement below can be done with a switch case...
+    % but more likely it could just be defined in an array above
+    % eg. prob_num=['2.04','2.05','Mixed 2.05','2.06'];
+    % and calling prob_num(i)
+    % Not sure though b/c I'm not sure what the purpose of this is.
     if i == 1
         prob_num = '2.04';
     elseif i == 2

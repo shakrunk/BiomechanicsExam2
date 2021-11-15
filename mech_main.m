@@ -28,56 +28,44 @@ function [out] = mech_main (varargin)
         bar = varargin{1};
     end
     
-    
-    
     %% Free Deformation
     % Mechanical / Thermal
     disp([func, 'Calculating Free Deformation...']); %lgf
     UncLoad = 0;
-    %conv_mat_MDef = cell(numel(step_vec));
-    %conv_mat_TDef = cell(numel(step_vec));
-    %step_vec = linspace(5,bar.Nistp,4);
-    for i = 1: 1: bar.NElem % loop through elements
-        UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained end load
-        out.UncLoad(i) = UncLoad;
-        step_vec = [bar.Nistp/2, bar.Nistp];
-        conv_mat_MDef = cell(2,1);
-        conv_mat_TDef = cell(2,1);
+    
+    % Workspace Sec 1
+    
+    for i = 1: 1: bar.NElem % Loop through elements
+        UncLoad = UncLoad + bar.EndLoad(i); % Calculates uncontrained load
+        out.UncLoad(i) = UncLoad; % Add to outputs structure
         
-        figure
-        for j = 1: 2
-            step = step_vec(j);
-            [ UncMDef, UncTDef ] = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Alph(i),bar.DeltT(i)-bar.initT,step);
+        % create vector with different amount of integration steps for
+        % convergence plots
+        covergence_steps = [bar.Nistp/2, bar.Nistp];
+        
+        % Loop Setup
+        figure; % Create new figure
+        conv_mat_MDef = cell(length(covergence_steps),1); % Preallocate size
+        conv_mat_TDef = cell(length(covergence_steps),1); % Preallocate size       
+        for j = 1: 1: length(covergence_steps) % Calculate with all integration steps
+            % Calculatesthe unconstrained mechanical / thermal deformation
+            [ UncMDef, UncTDef ] = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Alph(i),bar.DeltT(i)-bar.initT,covergence_steps(j));
+            
+            % Stores the integration values in a 2D array
             conv_mat_MDef{j} = UncMDef;
             conv_mat_TDef{j} = UncTDef;
-            if j == 2
+
             out.UncMDef(i) = UncMDef(end);
             out.UncTDef(i) = UncTDef(end);
-            end
-            x_vals = linspace(0, bar.Leng(i), step);
+
+            x_vals = linspace(0, bar.Leng(i), covergence_steps(j));
             plot(x_vals,conv_mat_MDef{j});
             hold on
         end
         title(fprintf('Convergence Plot for Element %s', bar.NElem));
         legend('steps= 10', 'steps = 20')
-        % Set up for convergence plots
         
-        
-%         figure
-%         ooop = linspace(0,20, numel(conv_mat_MDef{1}));
-%         plot(ooop, conv_mat_MDef{1})
-%         title = fprintf('Convergence Plot for Element %s (Problem %s)', bar.NElem, prob_num);
-%         title(title)
-%         
-%         
-        
-        
-        
-        % Inconstant Area: integral of [P / A(x) E(x)] dx
-        %    linspace(Al, Ar, nsteps)
-        %    linspace(0, L2, nsteps)
-        %    trapz()
-        %    cumtrap()
+        % Workspace Sec 2
         
     end
     disp([func, 'Done!']); %lgf
@@ -99,15 +87,15 @@ function [out] = mech_main (varargin)
     out.React0 = TotRxDef / rxSumNoLoad;
     out.React1 = - (out.UncLoad(bar.NElem) + out.React0);
 
-    % Calculate reaction deformation of each element    ? why does this say reaction deformation? 
+    % Calculate reaction deformation of each element    
     for i = 1: 1: bar.NElem % loop through elements
         [reactDef, ~] = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),0,0,bar.Nistp);
-        reactDef = reactDef(end);
+        reactDef(i) = reactDef(end);
     end
 
-    % Calculate total deformation of each element
+    % Calculate total deformation of each element  
     for h = 1: 1: bar.NElem % loop through elements
-        out.TotDef(h) = out.UncMDef(h) + out.UncTDef(h);
+        out.TotDef(h) = out.UncMDef(h) + out.UncTDef(h) - reactDef(h);
     end
     disp([func, 'Done!']); %lgf
 
@@ -142,3 +130,27 @@ function [out] = mech_main (varargin)
     % out.MecDef(bar.NElem) - the mechanical deformation of each element
     disp('****END OF ANALYSIS****');
 end
+
+%% Program Workspace / Debug Station
+    % A place to mess around with ideas if unsure where it will be placed
+    % organizationally. Ideally there should be nothing in this section
+    % once the file is complete.
+
+    % Sec 1 (~ line 36)
+        %conv_mat_MDef = cell(numel(step_vec));
+        %conv_mat_TDef = cell(numel(step_vec));
+        %step_vec = linspace(5,bar.Nistp,4);
+
+    % Sec 2 (~ line 68)
+        % Set up for convergence plots 
+            % figure
+            % ooop = linspace(0,20, numel(conv_mat_MDef{1}));
+            % plot(ooop, conv_mat_MDef{1})
+            % title = fprintf('Convergence Plot for Element %s (Problem %s)', bar.NElem, prob_num);
+            % title(title)
+
+            % Inconstant Area: integral of [P / A(x) E(x)] dx
+            %    linspace(Al, Ar, nsteps)
+            %    linspace(0, L2, nsteps)
+            %    trapz()
+            %    cumtrap()
