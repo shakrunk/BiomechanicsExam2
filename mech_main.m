@@ -41,8 +41,8 @@ function [out] = mech_main (varargin)
         out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
         out.UncTDef(i) = defThermo(bar.Alph(i),bar.DeltT(i)-bar.initT,bar.Leng(i));
 
-        out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);    
-        out.UncTDef(i) = defThermo(bar.Alph(i),bar.DeltT(i)-bar.initT, bar.Leng(i));
+%         out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);    
+%         out.UncTDef(i) = defThermo(bar.Alph(i),bar.DeltT(i)-bar.initT, bar.Leng(i));
     end
     disp([func, 'Done!']); %lgf
     
@@ -64,13 +64,13 @@ function [out] = mech_main (varargin)
 
     % Calculate reaction deformation of each element
     for i = 1: 1: bar.NElem % loop through elements
-        reactDef = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
+        out.ReactDef = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
     end
     % Total = sum
     
     % Calculate total deformation of each element
     for h = 1: 1: bar.NElem % loop through elements
-        out.TotDef(h) = out.UncMDef(h) + out.UncTDef(h);
+        out.TotDef(h) = out.UncMDef(h) + out.UncTDef(h) + out.ReactDef;
     end
     
     if bar.EndGap ~= 0
