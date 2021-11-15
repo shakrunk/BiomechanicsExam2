@@ -66,6 +66,8 @@ Neil
     Indeterminancy/Reaction Return/*
 Linea
     Indeterminancy/Check for indeterminency  
+    Determinite System/out.MecDef
+    Determinite System/out.TotDef
 Elise
     Determinant System/out.TotLoad(bar.NElem)
     Determinant System/out.Stress(bar.NElem)
@@ -81,6 +83,7 @@ Neil
     Indeterminancy/Free Deformation/*
     Indeterminancy/Reaction Return/*
 Linea
+    Indeterminancy/Check for indeterminency  
 Elise
     Determinant System/out.TotLoad(bar.NElem)
     Determinant System/out.Stress(bar.NElem)
