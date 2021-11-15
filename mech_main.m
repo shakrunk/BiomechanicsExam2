@@ -38,13 +38,16 @@ function [out] = mech_main (varargin)
 
         out.UncMDef(i) = int_def(UncLoad,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
         out.UncTDef(i) = defThermo(bar.Alph(i),bar.DeltT(i)-bar.initT,bar.Leng(i));
+        FreeDefSum = out.UncMDef(i) + out.UncMDef(i);
     end
     disp([func, 'Done!']); %lgf
     
     if bar.EndGap ~= 0
         disp([func,'Gap, problem may be statically determinate']); 
-        if bar.EndGap >= out.UncTDef
+        if bar.EndGap <= FreeDefSum
             disp([func,'Gap closed. Indeterminate']); 
+        else 
+            disp([func,'Gap not closed. Determinate']);
         end
     end
     
