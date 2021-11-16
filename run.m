@@ -37,7 +37,13 @@ bar(2) = load('Example Models/Prob2.05.mat').bar;   fprintf('Prob2.05.mat loaded
 bar(3) = load('Example Models/Prob2.06.mat').bar;   fprintf('Prob2.06.mat loaded into bar(3)\n'); %lgf
 bar(4) = load('Example Models/Mixed2.05.mat').bar;  fprintf('Mixed2.05.mat loaded into bar(4)\n'); %lgf
 
-for i = 1:4
+gradbar(1) = load('Graded Models/Graded_Bar1.mat').bar;  fprintf('Graded_Bar1.mat loaded into bar(5)\n'); %lgf
+gradbar(2) = load('Graded Models/Graded_Bar2.mat').bar;  fprintf('Graded_Bar2.mat loaded into bar(6)\n'); %lgf
+
+bar(5) = rmfield(gradbar(1),'comment');
+bar(6) = rmfield(gradbar(2),'comment');
+
+for i = 1: 1: length(bar)
     fprintf('\n Running mech_main.m on bar model %i\n', i); %lgf
     out(i) = mech_main(bar(i));
 end
