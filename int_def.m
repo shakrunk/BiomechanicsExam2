@@ -38,15 +38,15 @@ function [defMTot] = int_def (P,L,A1,A2,E1,E2,step)
     defMTot = 0; % Create variable for total mechanical deformation
         
     % Loop through integration steps
-    for i = 1:step
+    for i = 1: 1: step
 
         % Area - Left and Right
-        unitA1 = A1 - dA*i;  % Area on the left         || u:area
-        unitA2 = A1 - dA*(i-1); % Area on the right     || u:area
+        unitA1 = A2 - dA*i;  % Area on the left         || u:area
+        unitA2 = A2 - dA*(i-1); % Area on the right     || u:area
 
         % Modulus - Left and Right
-        unitE1 = E1 - dE*i;  % Modulus on the left      || u:pressure
-        unitE2 = E1 - dE*(i-1);  % Modulus on the right || u:pressure
+        unitE1 = E2 - dE*i;  % Modulus on the left      || u:pressure
+        unitE2 = E2 - dE*(i-1);  % Modulus on the right || u:pressure
 
         % Calculate differential change in deformation
         unitMDef1 = defCylinder(P,dL,unitA1,unitE1); % Right
