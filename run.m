@@ -42,6 +42,8 @@ for i = 1:4
     out(i) = mech_main(bar(i));
 end
 
+%% Print Output
+
 %% Progam End
 
 fprintf("\n<strong>## End of Progam</strong>\n");
