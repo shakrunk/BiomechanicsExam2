@@ -68,8 +68,7 @@ function [out] = mech_main (varargin)
     TotRxDef = 0;
     rxSumNoLoad = 0;
     
-    % We're getting this wrong on the problems that have a gap
-    
+    % Loop for reaction deformation.
     for i = 1: 1: bar.NElem % loop through elements
         rxSumNoLoad = rxSumNoLoad + int_def(1,bar.Leng(i), bar.Area1(i), bar.Area2(i), bar.Modu1(i), bar.Modu2(i), bar.Nistp);
         TotRxDef = TotRxDef - (out.UncMDef(i) + out.UncTDef(i));
@@ -79,7 +78,9 @@ function [out] = mech_main (varargin)
     out.React0 = (TotRxDef + bar.EndGap) / rxSumNoLoad;
     out.React1 = - (out.UncLoad(bar.NElem) + out.React0);
 
-    ReactDef = 0;
+    % Loop setup
+    ReactDef(bar.NElem) = 0; % Preallocate ReactDef size
+    % Loop for all other values
     for i = 1: 1: bar.NElem % loop through elements
         % Calculate total internal load in each element
         out.TotLoad(i) = out.React0 + out.UncLoad(i);
