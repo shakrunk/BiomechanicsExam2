@@ -37,6 +37,8 @@ bar(2) = load('Example Models/Prob2.05.mat').bar;   fprintf('Prob2.05.mat loaded
 bar(3) = load('Example Models/Prob2.06.mat').bar;   fprintf('Prob2.06.mat loaded into bar(3)\n'); %lgf
 bar(4) = load('Example Models/Mixed2.05.mat').bar;  fprintf('Mixed2.05.mat loaded into bar(4)\n'); %lgf
 
+% preallocation of output structure
+out = struct('UncLoad',[],'UncMDef',[],'UncTDef',[],'React0',[],'React1',[],'ReactDef',[],'MecDef',[],'TotDef',[],'TotLoad',[],'Stress',[]);
 for i = 1:4
     fprintf('\n Running mech_main.m on bar model %i\n', i); %lgf
     out(i) = mech_main(bar(i));
