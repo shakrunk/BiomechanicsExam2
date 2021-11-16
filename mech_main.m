@@ -78,27 +78,24 @@ function [out] = mech_main (varargin)
     % Calculate Reaction Forces
     out.React0 = (TotRxDef + bar.EndGap) / rxSumNoLoad;
     out.React1 = - (out.UncLoad(bar.NElem) + out.React0);
-    
+
     ReactDef = 0;
-    % Calculate reaction deformation of each element
     for i = 1: 1: bar.NElem % loop through elements
+        % Calculate total internal load in each element
+        out.TotLoad(i) = out.React0 + out.UncLoad(i);
+
+        % Calculate reaction deformation of each element
         ReactDef(i) = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
 
+        % Calculatet total deformation (w/ and w/o thermal)
         out.MecDef(i) = out.UncMDef(i) + ReactDef(i);
         out.TotDef(i) = out.UncMDef(i) + out.UncTDef(i) + ReactDef(i); 
+
+        % Average normal stress in each element
+        AvgArea = (bar.Area1 + bar.Area2) ./ 2;
+        out.Stress(i) = out.TotLoad(i) ./ AvgArea(i);
     end
     disp([func, 'Done!']); %lgf
-    
-    % Calculate total internal load in each element
-    for j = 1: 1: bar.NElem
-        out.TotLoad(j) = out.React0 + out.UncLoad(j);
-    end
-     
-    % Average normal stress in each element
-    for k = 1: 1: bar.NElem
-        AvgArea = (bar.Area1 + bar.Area2) ./ 2;
-        out.Stress(k) = out.TotLoad(k) ./ AvgArea(k);
-    end
      
     
     %% OUTPUT SHOULD CONTAIN
