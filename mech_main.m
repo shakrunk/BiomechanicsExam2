@@ -78,13 +78,14 @@ function [out] = mech_main (varargin)
     % Calculate Reaction Forces
     out.React0 = (TotRxDef + bar.EndGap) / rxSumNoLoad;
     out.React1 = - (out.UncLoad(bar.NElem) + out.React0);
-
+    
+    ReactDef = 0
     % Calculate reaction deformation of each element
     for i = 1: 1: bar.NElem % loop through elements
-        out.ReactDef(i) = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
+        ReactDef(i) = int_def(out.React0,bar.Leng(i),bar.Area1(i),bar.Area2(i),bar.Modu1(i),bar.Modu2(i),bar.Nistp);
 
-        out.MecDef(i) = out.UncMDef(i) + out.ReactDef(i);
-        out.TotDef(i) = out.UncMDef(i) + out.UncTDef(i) + out.ReactDef(i); 
+        out.MecDef(i) = out.UncMDef(i) + ReactDef(i);
+        out.TotDef(i) = out.UncMDef(i) + out.UncTDef(i) + ReactDef(i); 
     end
     disp([func, 'Done!']); %lgf
     
