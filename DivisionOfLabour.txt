@@ -72,6 +72,7 @@ Elise
     Determinant System/out.TotLoad(bar.NElem)
     Determinant System/out.Stress(bar.NElem)
     Misc/Quality Assurance
+    Integration Function/Proof of Convergence
 
 ## -- Work Done -- ##
 
@@ -92,9 +93,7 @@ Elise
     
     Run Stript/Print Output
     Run Stript/Comparison (to known values)
-    Integration Function/Proof of Convergence
     Integration Function/Error Analysis
-    Indeterminancy/Check for Indeterminancy
     Determinant System/out.TotDef(bar.NElem)
     Determinant System/out.MecDef(bar.NElem)
     Misc/Publish to PDF
