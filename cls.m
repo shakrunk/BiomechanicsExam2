@@ -1,7 +1,7 @@
 %% Generic Reset Command 
 % Author(s):
 %  - Neil A. Kumar
-% Dependancies:
+% Dependencies:
 %  - None
 
 % Enabled Commands

@@ -4,9 +4,10 @@
 %  - Linea Gutierrez
 %  - Elise Carter
 %  - Dr. Kendall Hunter (provided template/examples, assumed)
-% Dependancies:
+% Dependencies:
 %  - model_input.m
 %  - int_def.m
+%  - defThermo.m
 % -------------------------------------------------------------------------
 % All units are generalizable to both SI or U.S. customary units (use only
 % one) and are represented with "u:" followed by the unit type:
