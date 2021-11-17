@@ -26,7 +26,7 @@ fprintf("<strong># ~/denkr/Documents/School/UCD/'5. BIOE.3020.H01 - BioMechanics
 fprintf("<strong># File: run.m</strong>\n");
 fprintf("<strong># Title: Exam 2 Take-Home Portion</strong>\n");
 fprintf("<strong># Authors: Neil A. Kumar, Linea Gutierrez, and Elise Carter</strong>\n");
-fprintf("<strong># Dependencies:</strong> cls.m | Mixed2.05.mat | Prob2.04.mat | Prob2.05.mat | Prob2.06.mat | mech_main.m\n");
+fprintf("<strong># Dependencies:</strong> cls.m | Mixed2.05.mat | Prob2.04.mat | Prob2.05.mat |\n                Prob2.06.mat | Graded_Bar1.mat | Graded_Bar2.mat |\n                mech_main.m\n");
 
 %% Program Main
 

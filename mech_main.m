@@ -59,7 +59,7 @@ function [out] = mech_main (varargin)
             disp([func,'Gap not closed. Determinate']); %lgf
         end
     else
-        disp([func, 'No Gap']);
+        disp([func, 'No Gap']); %lgf
     end
     disp([func, 'Done!']); %lgf
 
