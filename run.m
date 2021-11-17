@@ -41,7 +41,7 @@ bar(4) = load('Example Models/Mixed2.05.mat').bar;  fprintf('Mixed2.05.mat loade
 gradbar(1) = load('Graded Models/Graded_Bar1.mat').bar; 
 gradbar(2) = load('Graded Models/Graded_Bar2.mat').bar; 
 
-% Add
+% Add graded models to bar (removes redundant fields)
 bar(5) = rmfield(gradbar(1),'comment'); fprintf('Graded_Bar1.mat loaded into bar(5)\n'); %lgf
 bar(6) = rmfield(gradbar(2),'comment'); fprintf('Graded_Bar2.mat loaded into bar(6)\n'); %lgf
 
