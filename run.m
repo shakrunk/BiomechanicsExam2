@@ -46,7 +46,7 @@ bar(5) = rmfield(gradbar(1),'comment'); fprintf('Graded_Bar1.mat loaded into bar
 bar(6) = rmfield(gradbar(2),'comment'); fprintf('Graded_Bar2.mat loaded into bar(6)\n'); %lgf
 
 for i = 1: 1: length(bar)
-    fprintf('\n Running mech_main.m on bar model %i\n', i); %lgf
+    fprintf('\nRunning mech_main.m on bar model %i\n', i); %lgf
     out(i) = mech_main(bar(i));
 end
 
