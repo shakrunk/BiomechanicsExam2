@@ -10,6 +10,8 @@
 %  - Prob2.04.mat
 %  - Prob2.05.mat 
 %  - Prob2.06.mat
+%  - Graded_Bar1.mat
+%  - Graded_Bar2.mat
 %  - mech_main.m
 
 %% Setup
