@@ -50,6 +50,8 @@ bar(6) = rmfield(gradbar(2),'comment'); fprintf('Graded_Bar2.mat loaded into bar
 for i = 1: 1: length(bar)
     fprintf('\nRunning mech_main.m on bar model %i\n', i); %lgf
     out(i) = mech_main(bar(i));
+    fprintf('output for bar(i) \n') 
+    disp(struct2table(out(i)));
 end
 
 %% Prove Convergence for a Bar (Problem 2.05)
@@ -89,8 +91,6 @@ end
 % between UncMDef when solved with original Nistp value is within a tolerance (1e-6) of
 % UncMDef solved with Nistp*100 steps, it is concluded that solving with 
 % the original step size does indeed converge within the integration function.
-
-%% Print Output
 
 %% Progam End
 

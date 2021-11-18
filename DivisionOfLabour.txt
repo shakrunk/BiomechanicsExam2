@@ -12,12 +12,14 @@ of Exam 2 in Dr. Kendall Hunter's Introduction to Biomechanics class
 also serve to document who does what work, without regard for the initial 
 assignment.
 
+
 ## -- Format -- ##
 
 Each group member will provide two signatures at the bottom of this 
 document: the first to indicate that the written assignments were agreed 
 to, the second to indicate that the document acurately represents who did 
 what work.
+
 
 ## -- Work Definition -- ##
 
@@ -54,28 +56,7 @@ Misc
         Consistency
     Quality Assurance
 
-## -- Work Assignment -- ##
 
-Neil
-    Run Script/Load Examples
-    Run Script/Run Analysis
-    Integration Function/Mechanical Deformation (? TBD)
-    Itegration Function/Thermal Deformation (? TBD)
-    Indeterminancy/Free Deformation/*
-    Indeterminancy/Reaction Return/*
-    Run Stript/Comparison (to known values)
-Linea
-    Indeterminancy/Check for indeterminency  
-    Determinite System/out.MecDef
-    Determinite System/out.TotDef
-    Run Stript/Comparison (to known values)
-Elise
-    Determinant System/out.TotLoad(bar.NElem)
-    Determinant System/out.Stress(bar.NElem)
-    Misc/Quality Assurance
-    Integration Function/Proof of Convergence
-    Integration Function/Error Analysis
-    Run Stript/Comparison (to known values)
 
 ## -- Work Done -- ##
 
@@ -92,6 +73,8 @@ Linea
     Determinite System/out.MecDef
     Determinite System/out.TotDef
     Run Stript/Comparison (to known values)
+    Run Stript/Print Output
+    Misc/Publish to PDF
 Elise
     Determinant System/out.TotLoad(bar.NElem)
     Determinant System/out.Stress(bar.NElem)
@@ -100,13 +83,6 @@ Elise
     Integration Function/Error Analysis
     Run Stript/Comparison (to known values)
 
-## -- Tasks Needing Person Assignment -- ##
-    
-    Run Stript/Print Output
-    Misc/Publish to PDF
-    Misc/Documentation Enforcement/Presence
-    Misc/Documentation Enforcement/Consistency
-
 ## -- Signatures -- ##
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -114,8 +90,8 @@ Elise
  *         NAME      || SIGNATURE 1 AND DATE  || SIGNATURE 2 AND DATE    *
  *   =================================================================   *
  *   Neil A. Kumar   ||  Signed Oct 26, 2021  || Signed Nov 18, 2021     *
- *   Linea Gutierrez ||  Unsigned MMM DD, 2021  || Unsigned MMM DD, 2021     *
- *   Elise Carter    ||  Signed Oct 26, 2021  || Unsigned MMM DD, 2021     *  
+ *   Linea Gutierrez ||  Signed Oct 26, 2021  || Signed Nov 18, 2021     *
+ *   Elise Carter    ||  Signed Oct 26, 2021  || Signed Nov 18, 2021     *  
  *                                                                       *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
