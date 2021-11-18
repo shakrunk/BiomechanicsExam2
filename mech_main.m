@@ -58,7 +58,7 @@ function [out] = mech_main (varargin)
             disp([func,'Gap closed. Indeterminate']); %lgf
         else
             disp([func,'Gap not closed. Determinate']); %lgf
-            disp([func,'Use different program to sove. Closing Program.']); %lgf
+            disp([func,'Use different program to solve. Closing Program.']); %lgf
             return;
         end
     else
