@@ -64,16 +64,19 @@ Neil
     Itegration Function/Thermal Deformation (? TBD)
     Indeterminancy/Free Deformation/*
     Indeterminancy/Reaction Return/*
+    Run Stript/Comparison (to known values)
 Linea
     Indeterminancy/Check for indeterminency  
     Determinite System/out.MecDef
     Determinite System/out.TotDef
+    Run Stript/Comparison (to known values)
 Elise
     Determinant System/out.TotLoad(bar.NElem)
     Determinant System/out.Stress(bar.NElem)
     Misc/Quality Assurance
     Integration Function/Proof of Convergence
     Integration Function/Error Analysis
+    Run Stript/Comparison (to known values)
 
 ## -- Work Done -- ##
 
@@ -84,21 +87,23 @@ Neil
     Itegration Function/Thermal Deformation (? TBD)
     Indeterminancy/Free Deformation/*
     Indeterminancy/Reaction Return/*
+    Run Stript/Comparison (to known values)
 Linea
     Indeterminancy/Check for indeterminency
     Determinite System/out.MecDef
     Determinite System/out.TotDef
+    Run Stript/Comparison (to known values)
 Elise
     Determinant System/out.TotLoad(bar.NElem)
     Determinant System/out.Stress(bar.NElem)
     Misc/Quality Assurance
     Integration Function/Proof of Convergence
     Integration Function/Error Analysis
+    Run Stript/Comparison (to known values)
 
 ## -- Tasks Needing Person Assignment -- ##
     
     Run Stript/Print Output
-    Run Stript/Comparison (to known values)
     Misc/Publish to PDF
     Misc/Documentation Enforcement/Presence
     Misc/Documentation Enforcement/Consistency
