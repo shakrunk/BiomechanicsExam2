@@ -76,13 +76,19 @@ convbar_out{2} = mech_main(convbar);
 
 % Relative error between bar elements with 20 and 2000 steps
 rel_error = (convbar_out{1}.UncMDef - convbar_out{2}.UncMDef) ./ convbar_out{1}.UncMDef;
-tol = 1e-6; % tolerance
+tol = 1e-6; % tolerance 
 
 if any(rel_error > tol) % relative error greater than tolerance
     fprintf('\n Does not converge with original step size. Original Step Size Insufficient \n'); %lgf
 else % relative error less than tolerance
      fprintf('\n Convergence Proved! Original Step Size Sufficient \n'); %lgf
 end
+
+% EXPLANATION: convbar_out.UncMDef is assigned to the output of the first 
+% time our integration funtion is used in mech_main. If the relative error  
+% between UncMDef when solved with original Nistp value is within a tolerance (1e-6) of
+% UncMDef solved with Nistp*100 steps, it is concluded that solving with 
+% the original step size does indeed converge within the integration function.
 
 %% Print Output
 
