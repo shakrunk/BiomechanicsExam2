@@ -73,6 +73,7 @@ Elise
     Determinant System/out.Stress(bar.NElem)
     Misc/Quality Assurance
     Integration Function/Proof of Convergence
+    Integration Function/Error Analysis
 
 ## -- Work Done -- ##
 
@@ -84,18 +85,20 @@ Neil
     Indeterminancy/Free Deformation/*
     Indeterminancy/Reaction Return/*
 Linea
-    Indeterminancy/Check for indeterminency  
+    Indeterminancy/Check for indeterminency
+    Determinite System/out.MecDef
+    Determinite System/out.TotDef
 Elise
     Determinant System/out.TotLoad(bar.NElem)
     Determinant System/out.Stress(bar.NElem)
+    Misc/Quality Assurance
+    Integration Function/Proof of Convergence
+    Integration Function/Error Analysis
 
 ## -- Tasks Needing Person Assignment -- ##
     
     Run Stript/Print Output
     Run Stript/Comparison (to known values)
-    Integration Function/Error Analysis
-    Determinant System/out.TotDef(bar.NElem)
-    Determinant System/out.MecDef(bar.NElem)
     Misc/Publish to PDF
     Misc/Documentation Enforcement/Presence
     Misc/Documentation Enforcement/Consistency
