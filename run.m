@@ -54,38 +54,35 @@ end
 
 %% Prove Convergence for a Bar (Problem 2.05)
 % Prove convergence by changing step size
-fprintf('\n\n Proving Convergence \n'); %lgf
+fprintf('\n -Proving Convergence- \n'); %lgf
 
 % Load prob 2.05
 convbar = load('Example Models/Prob2.05.mat').bar;
 
 % Store original solve structure in a cell
+fprintf('\nRunning mech_main.m on convergence bar model 1\n'); %lgf
 convbar_out{1} = mech_main(convbar);
 
 % Define original number of steps (Nistp)
 step_original = convbar.Nistp;
 
-% Define number of steps to be tested
-step_1 = step_original * 10;
-step_2 = step_original * 100;
+% Define new number of steps to be tested
+step_new = step_original * 100;
 
-% Save bar with 200 steps
-convbar.Nistp = step_1;
-save('conv_2.05_200step.mat')
+% Set Nistp equal to 200 steps and solve
+fprintf('\nRunning mech_main.m on convergence bar model 2\n'); %lgf
+convbar.Nistp = step_new;
+convbar_out{2} = mech_main(convbar);
 
-% Save bar with 2000 steps
-convbar.Nistp = step_2;
-save('conv_2.05_2000step.mat')
+% Relative error between bar elements with 20 and 2000 steps
+rel_error = (convbar_out{1}.UncMDef - convbar_out{2}.UncMDef) ./ convbar_out{1}.UncMDef;
+tol = 1e-6; % tolerance
 
-
-%if
-    %fprintf('\n- Convergence Proved -\n\n'); %lgf
-    
-%else 
-    %fprintf('\n- Convergence Not Proved -\n\n'); %lgf
-    
-%end
-
+if any(rel_error > tol) % relative error greater than tolerance
+    fprintf('\n Does not converge with original step size. Original Step Size Insufficient \n'); %lgf
+else % relative error less than tolerance
+     fprintf('\n Convergence Proved! Original Step Size Sufficient \n'); %lgf
+end
 
 %% Print Output
 
@@ -98,22 +95,3 @@ fprintf("\n<strong>## End of Progam</strong>\n");
     % organizationally. Ideally there should be nothing in this section
     % once the file is complete.
     
-    
-% %Create vector with different amount of integration steps for convergence
-% %plots
-% convergence_steps = [bar(1).Nistp/2, bar(1).Nistp];
-% 
-% conv_mat_defMTot = cell(length(convergence_steps),1); %Preallocate size
-% 
-% figure;
-% for j = 1 : 1: length(convergence_steps)
-%     % Calculates the unconstrained mechanical deformation
-%     conv_mat_defMTot{j} = int_def(out(1).UncLoad(2),bar(1).Leng(2),bar(1).Area1(2),bar(1).Area2(2),bar(1).Modu1(2),bar(1).Modu2(2),convergence_steps(j));
-%     
-%     x_vals = linspace(0, bar(1).Leng(2), convergence_steps(j));
-%     plot(x_vals, conv_mat_defMTot{j});
-%     hold on
-% end
-% 
-% title('Convergence Plot')
-% legend('steps = 10', 'steps = 20')
