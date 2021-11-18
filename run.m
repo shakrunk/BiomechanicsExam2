@@ -94,6 +94,6 @@ end
 
 %% Progam End
 
-fprintf("\n<strong>## End of Progam</strong>");
+fprintf("\n<strong>## End of Progam</strong>\n");
 
     
