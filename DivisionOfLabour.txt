@@ -5,6 +5,7 @@
 # - Linea Gutierrez  
 # - Elise Carter
 
+
 ## -- Purpose -- ##
 The purpose of this file is to dictate how work for the take home portion 
 of Exam 2 in Dr. Kendall Hunter's Introduction to Biomechanics class 
@@ -17,7 +18,7 @@ assignment.
 
 Each group member will provide two signatures at the bottom of this 
 document: the first to indicate that the written assignments were agreed 
-to, the second to indicate that the document acurately represents who did 
+to, the second to indicate that the document accurately represents who did 
 what work.
 
 
@@ -32,8 +33,8 @@ Integration Function
     Mechanical Deformation
     Proof of Convergence
     Error Analysis
-Indeterminancy
-    Check for Indeterminancy
+Indeterminacy
+    Check for Indeterminacy
     Free Deformation
         Mechanics
             out.UncLoad(bar.NElem)
@@ -64,16 +65,16 @@ Neil
     Run Script/Load Examples
     Run Script/Run Analysis
     Integration Function/Mechanical Deformation
-    Itegration Function/Thermal Deformation
-    Indeterminancy/Free Deformation/*
-    Indeterminancy/Reaction Return/*
-    Run Stript/Comparison (to known values)
+    Integration Function/Thermal Deformation
+    Indeterminacy/Free Deformation/*
+    Indeterminacy/Reaction Return/*
+    Run Script/Comparison (to known values)
 Linea
-    Indeterminancy/Check for indeterminency
-    Determinite System/out.MecDef
-    Determinite System/out.TotDef
-    Run Stript/Comparison (to known values)
-    Run Stript/Print Output
+    Indeterminacy/Check for indeterminacy
+    Determinate System/out.MecDef
+    Determinate System/out.TotDef
+    Run Script/Comparison (to known values)
+    Run Script/Print Output
     Misc/Publish to PDF
 Elise
     Determinant System/out.TotLoad(bar.NElem)
@@ -81,18 +82,26 @@ Elise
     Misc/Quality Assurance
     Integration Function/Proof of Convergence
     Integration Function/Error Analysis
-    Run Stript/Comparison (to known values)
+    Run Script/Comparison (to known values)
+
+
+
+
+
+
+
+
 
 ## -- Signatures -- ##
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *                                                                       *
- *         NAME      || SIGNATURE 1 AND DATE  || SIGNATURE 2 AND DATE    *
- *   =================================================================   *
- *   Neil A. Kumar   ||  Signed Oct 26, 2021  || Signed Nov 18, 2021     *
- *   Linea Gutierrez ||  Signed Oct 26, 2021  || Signed Nov 18, 2021     *
- *   Elise Carter    ||  Signed Oct 26, 2021  || Signed Nov 18, 2021     *  
- *                                                                       *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                                   *
+ *        NAME      || SIGNATURE 1 AND DATE  || SIGNATURE 2 AND DATE *
+ * ================================================================= *
+ * Neil A. Kumar   ||  Signed Oct 26, 2021  || Signed Nov 18, 2021   *
+ * Linea Gutierrez ||  Signed Oct 26, 2021  || Signed Nov 18, 2021   *
+ * Elise Carter    ||  Signed Oct 26, 2021  || Signed Nov 18, 2021   *  
+ *                                                                   *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 # End of DivisionOfLabour.txt
