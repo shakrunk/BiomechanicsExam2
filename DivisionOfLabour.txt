@@ -32,7 +32,6 @@ Integration Function
     Error Analysis
 Indeterminancy
     Check for Indeterminancy
-    
     Free Deformation
         Mechanics
             out.UncLoad(bar.NElem)
@@ -83,8 +82,8 @@ Elise
 Neil
     Run Script/Load Examples
     Run Script/Run Analysis
-    Integration Function/Mechanical Deformation (? TBD)
-    Itegration Function/Thermal Deformation (? TBD)
+    Integration Function/Mechanical Deformation
+    Itegration Function/Thermal Deformation
     Indeterminancy/Free Deformation/*
     Indeterminancy/Reaction Return/*
     Run Stript/Comparison (to known values)
@@ -108,23 +107,15 @@ Elise
     Misc/Documentation Enforcement/Presence
     Misc/Documentation Enforcement/Consistency
 
-## -- Additional Notes -- ##
-
-Status of the following:
-    Integration Function/Mechanical Deformation
-    Itegration Function/Thermal Deformation
-are TBD as they may need to be changed or split depending on the proof of
-convergence.
-
 ## -- Signatures -- ##
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                                       *
  *         NAME      || SIGNATURE 1 AND DATE  || SIGNATURE 2 AND DATE    *
  *   =================================================================   *
- *   Neil A. Kumar   ||  Signed Oct 26, 2021  || Unsigned MMM DD, 2021   *
- *   Linea Gutierrez ||  Unsigned MMM DD, 2021  || Unsigned MMM DD, 2021   *
- *   Elise Carter    ||  Signed Oct 26, 2021  || Unsigned MMM DD, 2021   *  
+ *   Neil A. Kumar   ||  Signed Oct 26, 2021  || Signed Nov 18, 2021     *
+ *   Linea Gutierrez ||  Unsigned MMM DD, 2021  || Unsigned MMM DD, 2021     *
+ *   Elise Carter    ||  Signed Oct 26, 2021  || Unsigned MMM DD, 2021     *  
  *                                                                       *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
