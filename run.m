@@ -96,8 +96,4 @@ end
 
 fprintf("\n<strong>## End of Progam</strong>\n");
 
-%% Program Workspace / Debug Station
-    % A place to mess around with ideas if unsure where it will be placed
-    % organizationally. Ideally there should be nothing in this section
-    % once the file is complete.
     
